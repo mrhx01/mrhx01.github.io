@@ -213,7 +213,7 @@
         }
 
         /* ═══════════════════════════════════════════════
-                   RESPONSIVE HEADER - MAIN STYLES
+                   RESPONSIVE HEADER – NEW LAYOUT
                    ═══════════════════════════════════════════════ */
 
         nav {
@@ -229,13 +229,14 @@
             min-height: 72px;
         }
 
-        /* Left side: Logo + Language Dropdown */
+        /* LEFT side: Logo + Theme Toggle + Language Dropdown */
         .nav-left {
             display: flex;
             align-items: center;
             gap: 12px;
             flex: 0 1 auto;
             min-width: 0;
+            order: 1;
         }
 
         .logo {
@@ -249,6 +250,44 @@
         .logo:hover {
             transform: scale(1.05);
             text-shadow: 0 0 30px var(--accent-glow), 0 0 60px rgba(138, 111, 255, 0.15);
+        }
+
+        /* ─── Dark Mode Toggle ─── */
+        .theme-toggle {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 100px;
+            width: 38px;
+            height: 38px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all var(--transition);
+            color: var(--text-dim);
+            font-size: 1rem;
+            flex-shrink: 0;
+        }
+
+        .theme-toggle:hover {
+            border-color: var(--accent);
+            box-shadow: 0 0 20px var(--accent-glow);
+            color: var(--text);
+            transform: scale(1.05);
+        }
+
+        .theme-toggle .fa-sun {
+            display: none;
+        }
+        .theme-toggle .fa-moon {
+            display: block;
+        }
+
+        [data-theme="light"] .theme-toggle .fa-sun {
+            display: block;
+        }
+        [data-theme="light"] .theme-toggle .fa-moon {
+            display: none;
         }
 
         /* ─── Language Switcher Dropdown ─── */
@@ -360,50 +399,13 @@
             font-size: 1rem;
         }
 
-        /* ─── Right side: Menu + Dark Mode ─── */
+        /* ─── RIGHT side: Navigation Menu ─── */
         .nav-right {
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 8px;
             flex: 0 1 auto;
-        }
-
-        /* ─── Dark Mode Toggle ─── */
-        .theme-toggle {
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            border-radius: 100px;
-            width: 38px;
-            height: 38px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            transition: all var(--transition);
-            color: var(--text-dim);
-            font-size: 1rem;
-            flex-shrink: 0;
-        }
-
-        .theme-toggle:hover {
-            border-color: var(--accent);
-            box-shadow: 0 0 20px var(--accent-glow);
-            color: var(--text);
-            transform: scale(1.05);
-        }
-
-        .theme-toggle .fa-sun {
-            display: none;
-        }
-        .theme-toggle .fa-moon {
-            display: block;
-        }
-
-        [data-theme="light"] .theme-toggle .fa-sun {
-            display: block;
-        }
-        [data-theme="light"] .theme-toggle .fa-moon {
-            display: none;
+            order: 2;
         }
 
         .hamburger {
@@ -419,7 +421,7 @@
             z-index: 10;
             transition: all var(--transition);
             flex-shrink: 0;
-            margin-right: 2px;
+            margin-left: 4px;
         }
         .hamburger span {
             display: block;
@@ -480,15 +482,6 @@
             right: auto;
             left: 0;
         }
-        body[dir="ltr"] .about-text blockquote {
-            border-right: none;
-            border-left: 4px solid var(--accent);
-            padding-right: 0;
-            padding-left: 20px;
-        }
-        body[dir="ltr"] .contact-item:hover {
-            transform: translateX(4px);
-        }
 
         /* ═══════════════════════════════════════════════
                    RESPONSIVE BREAKPOINTS
@@ -523,7 +516,7 @@
             }
         }
 
-        /* Mobile */
+        /* Mobile – switch to hamburger menu */
         @media (max-width: 680px) {
             .container {
                 padding: 16px 0 40px;
@@ -597,7 +590,7 @@
                 display: flex;
                 width: 22px;
                 height: 16px;
-                margin-right: 0;
+                margin-left: 0;
             }
             .hamburger span {
                 height: 2px;
@@ -629,6 +622,8 @@
                 border-top: none;
                 background: var(--bg);
                 border-radius: 0 0 var(--radius) var(--radius);
+                order: 3;
+                flex-basis: 100%;
             }
 
             .nav-links.open {
@@ -663,6 +658,7 @@
                 display: none;
             }
 
+            /* Adjust hero and other sections for mobile */
             .hero {
                 padding: 30px 0 30px;
                 gap: 20px;
@@ -1731,9 +1727,15 @@
 
         <!-- Nav -->
         <nav>
-            <!-- Left: Logo + Language Dropdown -->
+            <!-- LEFT: Logo + Theme Toggle + Language Dropdown -->
             <div class="nav-left">
                 <div class="logo">MRHX01</div>
+
+                <!-- Dark/Light Mode Toggle -->
+                <button class="theme-toggle" id="themeToggle" aria-label="تغییر تم">
+                    <i class="fas fa-moon"></i>
+                    <i class="fas fa-sun"></i>
+                </button>
 
                 <!-- Language Switcher Dropdown -->
                 <div class="lang-dropdown">
@@ -1753,13 +1755,8 @@
                 </div>
             </div>
 
-            <!-- Right: Menu + Dark Mode Toggle -->
+            <!-- RIGHT: Navigation Menu + Hamburger -->
             <div class="nav-right">
-                <button class="theme-toggle" id="themeToggle" aria-label="تغییر تم">
-                    <i class="fas fa-moon"></i>
-                    <i class="fas fa-sun"></i>
-                </button>
-
                 <button class="hamburger" id="hamburger" aria-label="منو" aria-expanded="false">
                     <span></span>
                     <span></span>
