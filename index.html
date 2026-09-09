@@ -1750,8 +1750,7 @@
                             tags: ['Python', 'Django', 'DRF', 'React'],
                             images: [
                                 './images/1-1.png',
-                                './images/1-2.png',
-                                
+                                './images/1-2.png'
                             ]
                         }, {
                             title: 'طراحی فرانت و بک‌اند و راه‌اندازی سایت فروشگاهی اشتراک پریمیوم',
@@ -1759,7 +1758,7 @@
                             tags: ['Python', 'Django', 'HTML5', 'CSS3', 'Bootstrap'],
                             images: [
                                 './images/2-1.jpg',
-                                './images/2-2.jpg',
+                                './images/2-2.jpg'
                             ]
                         }, {
                             title: 'پنل مدیریتی پیشرفته',
@@ -1830,18 +1829,16 @@
                             desc: 'Full-Stack platform built with Django, DRF, and React for selling cloud servers. Includes custom APIs, automated order processing, international provider integration, Iranian payment gateway, user management, and hourly/monthly server purchases.',
                             tags: ['Python', 'Django', 'DRF', 'React'],
                             images: [
-                                'https://picsum.photos/seed/cloud1/800/500',
-                                'https://picsum.photos/seed/cloud2/800/500',
-                                'https://picsum.photos/seed/cloud3/800/500'
+                                './images/1-1.png',
+                                './images/1-2.png'
                             ]
                         }, {
                             title: 'Frontend & Backend for Premium Subscription Store',
                             desc: 'Full-stack development of a premium subscription store using Django and Bootstrap. Modular architecture, user & order management, payment gateway, admin panel, and automated digital product delivery.',
                             tags: ['Python', 'Django', 'HTML5', 'CSS3', 'Bootstrap'],
                             images: [
-                                'https://picsum.photos/seed/premium1/800/500',
-                                'https://picsum.photos/seed/premium2/800/500',
-                                'https://picsum.photos/seed/premium3/800/500'
+                                './images/2-1.jpg',
+                                './images/2-2.jpg'
                             ]
                         }, {
                             title: 'Advanced Admin Panel',
@@ -1889,7 +1886,6 @@
             let interval = null;
 
             function startProgress() {
-                // Immediately set progress to 1% to avoid 0% stuck
                 progress = 1;
                 updateUI(progress);
 
@@ -2274,7 +2270,7 @@
                 return idx;
             }
 
-            // ─── Project Sliders ───
+            // ─── Project Sliders (fixed: reset transform to 0) ───
             function initProjectSliders() {
                 document.querySelectorAll('.project-slider').forEach(function(slider) {
                     const slidesContainer = slider.querySelector('.slides');
@@ -2287,6 +2283,8 @@
                         if (dots) dots.style.display = 'none';
                         return;
                     }
+                    // Reset to first slide
+                    slidesContainer.style.transform = 'translateX(0%)';
                     let currentIndex = 0;
 
                     const dotsContainer = slider.querySelector('.dots');
