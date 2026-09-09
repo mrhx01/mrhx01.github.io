@@ -839,7 +839,7 @@
         .slide-image .img-placeholder {
             position: absolute;
             inset: 0;
-            display: flex;
+            display: none;
             align-items: center;
             justify-content: center;
             color: var(--text-dim);
@@ -1876,14 +1876,13 @@
                 const params = new URLSearchParams(window.location.search);
                 const lang = params.get('lang') || params.get('l');
                 if (lang === 'fa' || lang === 'en') return lang;
-                // also check hash? no.
                 return null;
             }
 
             const urlLang = getLangFromURL();
             if (urlLang) currentLang = urlLang;
 
-            // ─── Preloader ───
+            // ─── Preloader (fixed: immediate progress update) ───
             const preloader = document.getElementById('preloader');
             const percentEl = document.getElementById('loaderPercent');
             const barEl = document.getElementById('loaderBar');
@@ -1891,6 +1890,10 @@
             let interval = null;
 
             function startProgress() {
+                // Immediately set progress to 1% to avoid 0% stuck
+                progress = 1;
+                updateUI(progress);
+
                 interval = setInterval(function() {
                     let increment = 0;
                     if (progress < 50) increment = Math.floor(Math.random() * 3) + 2;
@@ -1977,8 +1980,6 @@
             let dragStartY = 0;
             let dragOrigX = 0;
             let dragOrigY = 0;
-            let lbTouchStartDist = 0;
-            let lbTouchStartScale = 1;
 
             function openLightbox(images, index) {
                 if (!images || images.length === 0) return;
@@ -1992,7 +1993,6 @@
                 lbOverlay.classList.add('open');
                 lbZoomHint.classList.remove('hidden');
                 document.body.style.overflow = 'hidden';
-                // reset transform
                 lbImage.style.transform = 'scale(1) translate(0px, 0px)';
                 lbImage.classList.remove('zoomed');
             }
@@ -2013,7 +2013,6 @@
                 lbImage.src = src;
                 lbImage.alt = 'Image ' + (lbCurrentIndex + 1);
                 lbCounter.textContent = (lbCurrentIndex + 1) + ' / ' + lightboxImages.length;
-                // reset zoom
                 lbScale = 1;
                 lbTranslateX = 0;
                 lbTranslateY = 0;
@@ -2033,13 +2032,11 @@
 
             function toggleZoom() {
                 if (!isZoomed) {
-                    // zoom in
                     lbScale = 2.2;
                     isZoomed = true;
                     lbImage.classList.add('zoomed');
                     lbZoomHint.classList.add('hidden');
                 } else {
-                    // zoom out
                     lbScale = 1;
                     lbTranslateX = 0;
                     lbTranslateY = 0;
@@ -2068,7 +2065,6 @@
             lbImage.addEventListener('click', function(e) { e.stopPropagation();
                 toggleZoom(); });
 
-            // keyboard
             document.addEventListener('keydown', function(e) {
                 if (!lbOverlay.classList.contains('open')) return;
                 if (e.key === 'Escape') { closeLightbox(); return; }
@@ -2076,7 +2072,6 @@
                 if (e.key === 'ArrowRight') { goToLightbox(lbCurrentIndex + 1); return; }
             });
 
-            // mouse wheel zoom
             lbImageWrap.addEventListener('wheel', function(e) {
                 if (!lbOverlay.classList.contains('open')) return;
                 e.preventDefault();
@@ -2091,7 +2086,7 @@
                 applyLightboxTransform();
             }, { passive: false });
 
-            // drag to pan (mouse)
+            // mouse drag
             lbImage.addEventListener('mousedown', function(e) {
                 if (!isZoomed) return;
                 isDragging = true;
@@ -2117,14 +2112,13 @@
                 }
             });
 
-            // touch events for pan & pinch
+            // touch events
             let lbTouchStartX = 0,
                 lbTouchStartY = 0;
             let lbTouchOrigX = 0,
                 lbTouchOrigY = 0;
-            let lbTouchStartScale = 1;
             let lbTouchStartDist = 0;
-            let lbTouches = [];
+            let lbTouchStartScale = 1;
 
             lbImageWrap.addEventListener('touchstart', function(e) {
                 if (!lbOverlay.classList.contains('open')) return;
@@ -2200,7 +2194,7 @@
                         slidesHTML += `
                                 <div class="slide-image" data-imgindex="${i}">
                                     <img src="${imgSrc}" alt="${project.title} ${i+1}" loading="lazy" />
-                                    <div class="img-placeholder" style="display:none;">📷</div>
+                                    <div class="img-placeholder">📷</div>
                                 </div>
                             `;
                     });
@@ -2210,8 +2204,6 @@
                         tagsHTML += `<span>${tag}</span>`;
                     });
 
-                    // No "View Project" link — removed per user request.
-                    // Instead we add a gallery hint.
                     card.innerHTML = `
                             <div class="project-slider" data-slider="${index}">
                                 <div class="slides">${slidesHTML}</div>
@@ -2233,10 +2225,10 @@
                     grid.appendChild(card);
                 });
 
-                // Init sliders + lightbox triggers
                 initProjectSliders();
                 initLightboxTriggers();
                 observeNewElements();
+                setTimeout(initImageLoading, 100);
             }
 
             // ─── Lightbox Triggers ───
@@ -2250,21 +2242,17 @@
                     });
                     if (images.length === 0) return;
 
-                    // Click on any slide image opens lightbox at that index
                     slides.forEach(function(slide, i) {
                         slide.addEventListener('click', function(e) {
                             e.stopPropagation();
-                            // if the click was on a button inside, ignore
                             if (e.target.closest('.slider-btn') || e.target.closest('.dots')) return;
                             openLightbox(images, i);
                         });
                     });
 
-                    // Also allow clicking on the slider background
                     slider.addEventListener('click', function(e) {
                         if (e.target.closest('.slider-btn') || e.target.closest('.dots')) return;
                         if (e.target.closest('.slide-image')) return;
-                        // clicked on slider background
                         const activeIdx = getActiveSlideIndex(slider);
                         if (activeIdx >= 0 && activeIdx < images.length) {
                             openLightbox(images, activeIdx);
@@ -2294,7 +2282,6 @@
                     const slideImages = slidesContainer.querySelectorAll('.slide-image');
                     const total = slideImages.length;
                     if (total <= 1) {
-                        // hide buttons and dots if only one
                         const btns = slider.querySelectorAll('.slider-btn');
                         btns.forEach(b => b.style.display = 'none');
                         const dots = slider.querySelector('.dots');
@@ -2387,7 +2374,6 @@
                 document.documentElement.dir = lang === 'fa' ? 'rtl' : 'ltr';
                 document.body.setAttribute('dir', lang === 'fa' ? 'rtl' : 'ltr');
 
-                // update title
                 const titleEl = document.getElementById('pageTitle');
                 if (translations[lang] && translations[lang].title) {
                     titleEl.textContent = translations[lang].title;
@@ -2402,7 +2388,6 @@
                 dropdownMenu.classList.remove('open');
                 dropdownBtn.classList.remove('active');
 
-                // Translate static elements
                 document.querySelectorAll('[data-i18n]').forEach(function(el) {
                     const key = el.getAttribute('data-i18n');
                     const keys = key.split('.');
@@ -2420,9 +2405,7 @@
                     }
                 });
 
-                // Re-render projects
                 renderProjects(lang);
-                // Re-init image loading for new images
                 setTimeout(initImageLoading, 100);
             }
 
@@ -2432,7 +2415,6 @@
                     const lang = this.getAttribute('data-lang');
                     if (lang !== currentLang) {
                         setLanguage(lang);
-                        // update URL without reload
                         const url = new URL(window.location);
                         url.searchParams.set('lang', lang);
                         window.history.replaceState({}, '', url);
@@ -2540,10 +2522,8 @@
             statNumbers.forEach(function(el) { statObserver.observe(el); });
 
             // ─── Init ───
-            // Set initial language (from URL or default)
             setLanguage(currentLang);
 
-            // Also listen to popstate for back/forward
             window.addEventListener('popstate', function() {
                 const lang = getLangFromURL();
                 if (lang && lang !== currentLang) {
@@ -2551,7 +2531,6 @@
                 }
             });
 
-            // re-run image loading after a moment
             setTimeout(initImageLoading, 300);
 
         })();
