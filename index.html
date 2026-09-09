@@ -1,23 +1,45 @@
 <!DOCTYPE html>
-<html lang="fa" dir="rtl">
+<html lang="fa" dir="rtl" data-theme="light">
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>روح‌اله حسینی · توسعه‌دهنده وب</title>
 
-    <!-- Preconnect for faster loading -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link rel="preconnect" href="https://cdnjs.cloudflare.com" />
 
-    <!-- External Resources -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
 
     <style>
-        /* ─── CSS Variables ─── */
         :root {
-            /* Dark Mode (default) */
+            /* Light Mode is now the default */
+            --primary: #4A3FAF;
+            --secondary: #2D2A6A;
+            --accent: #6A5ACD;
+            --accent-glow: rgba(106, 90, 205, 0.4);
+            --accent-glow-strong: rgba(106, 90, 205, 0.6);
+            --bg: #F0F2F8;
+            --text: #1A1A2E;
+            --text-dim: #4A4A6A;
+            --border: #D0D5E0;
+            --bg-card: #FFFFFF;
+            --bg-card-hover: #F5F6FC;
+            --radius: 16px;
+            --shadow: 0 12px 40px rgba(0, 0, 0, 0.12);
+            --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            --preloader-bg: #F0F2F8;
+            --scrollbar-track: #F0F2F8;
+            --scrollbar-thumb: #C0C5D0;
+            --scrollbar-thumb-hover: #8A6FFF;
+            --dropdown-bg: #FFFFFF;
+            --dropdown-hover: #F0F2F8;
+            --lang-btn-bg: #FFFFFF;
+        }
+
+        /* Dark Mode */
+        [data-theme="dark"] {
             --primary: #4A3FAF;
             --secondary: #2D2A6A;
             --accent: #8A6FFF;
@@ -29,9 +51,7 @@
             --border: #343A55;
             --bg-card: #1F2233;
             --bg-card-hover: #2A2E47;
-            --radius: 16px;
             --shadow: 0 12px 40px rgba(0, 0, 0, 0.7);
-            --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             --preloader-bg: #181A23;
             --scrollbar-track: #181A23;
             --scrollbar-thumb: #343A55;
@@ -41,30 +61,6 @@
             --lang-btn-bg: #1F2233;
         }
 
-        /* Light Mode */
-        [data-theme="light"] {
-            --bg: #F0F2F8;
-            --text: #1A1A2E;
-            --text-dim: #4A4A6A;
-            --border: #D0D5E0;
-            --bg-card: #FFFFFF;
-            --bg-card-hover: #F5F6FC;
-            --shadow: 0 12px 40px rgba(0, 0, 0, 0.12);
-            --preloader-bg: #F0F2F8;
-            --scrollbar-track: #F0F2F8;
-            --scrollbar-thumb: #C0C5D0;
-            --scrollbar-thumb-hover: #8A6FFF;
-            --dropdown-bg: #FFFFFF;
-            --dropdown-hover: #F0F2F8;
-            --lang-btn-bg: #FFFFFF;
-            --primary: #4A3FAF;
-            --secondary: #2D2A6A;
-            --accent: #6A5ACD;
-            --accent-glow: rgba(106, 90, 205, 0.4);
-            --accent-glow-strong: rgba(106, 90, 205, 0.6);
-        }
-
-        /* ─── Preloader ─── */
         #preloader {
             position: fixed;
             inset: 0;
@@ -91,9 +87,8 @@
             font-weight: 700;
             color: var(--accent);
             letter-spacing: -0.02em;
-            transition: all 0.1s ease;
             font-variant-numeric: tabular-nums;
-            text-shadow: 0 0 30px var(--accent-glow), 0 0 60px rgba(138, 111, 255, 0.2);
+            text-shadow: 0 0 30px var(--accent-glow);
         }
 
         .loader-label {
@@ -111,7 +106,6 @@
             background: var(--border);
             border-radius: 8px;
             overflow: hidden;
-            position: relative;
         }
 
         .loader-bar {
@@ -120,14 +114,10 @@
             background: linear-gradient(90deg, var(--accent), #B7A8FF);
             border-radius: 8px;
             transition: width 0.15s ease-out;
-            will-change: width;
             box-shadow: 0 0 20px var(--accent-glow);
         }
 
-        /* ─── Reset & Base ─── */
-        *,
-        *::before,
-        *::after {
+        *, *::before, *::after {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
@@ -146,21 +136,15 @@
             transition: background 0.4s ease, color 0.4s ease;
         }
 
-        body[dir="rtl"] {
-            text-align: right;
-        }
-        body[dir="ltr"] {
-            text-align: left;
-        }
+        body[dir="rtl"] { text-align: right; }
+        body[dir="ltr"] { text-align: left; }
 
         a {
             color: var(--accent);
             text-decoration: none;
             transition: color var(--transition);
         }
-        a:hover {
-            color: var(--text);
-        }
+        a:hover { color: var(--text); }
 
         .container {
             max-width: 1100px;
@@ -168,16 +152,11 @@
             padding: 40px 0 60px;
         }
 
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
-        ::-webkit-scrollbar-track {
-            background: var(--scrollbar-track);
-        }
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: var(--scrollbar-track); }
         ::-webkit-scrollbar-thumb {
             background: var(--scrollbar-thumb);
             border-radius: 8px;
-            transition: background 0.3s ease;
         }
         ::-webkit-scrollbar-thumb:hover {
             background: var(--scrollbar-thumb-hover);
@@ -192,7 +171,6 @@
             color: var(--accent);
             margin-bottom: 6px;
             text-align: center;
-            text-shadow: 0 0 20px rgba(138, 111, 255, 0.15);
         }
 
         .section-title {
@@ -212,7 +190,7 @@
             margin: 0 auto 20px;
         }
 
-        /* ─── Navigation ─── */
+        /* Navigation */
         nav {
             display: flex;
             justify-content: space-between;
@@ -225,10 +203,8 @@
             background: color-mix(in srgb, var(--bg) 85%, transparent);
             backdrop-filter: blur(16px);
             -webkit-backdrop-filter: blur(16px);
-            transition: all 0.3s ease;
         }
 
-        /* Left side: Logo + Language + Theme */
         .nav-left {
             display: flex;
             align-items: center;
@@ -248,7 +224,6 @@
             text-shadow: 0 0 30px var(--accent-glow);
         }
 
-        /* ─── Language Switcher ─── */
         .lang-dropdown {
             position: relative;
             display: inline-block;
@@ -345,7 +320,6 @@
             font-size: 1.1rem;
         }
 
-        /* ─── Dark Mode Toggle (now next to Language) ─── */
         .theme-toggle {
             background: var(--bg-card);
             border: 1px solid var(--border);
@@ -369,21 +343,12 @@
             transform: scale(1.06);
         }
 
-        .theme-toggle .fa-sun {
-            display: none;
-        }
-        .theme-toggle .fa-moon {
-            display: block;
-        }
+        .theme-toggle .fa-sun { display: none; }
+        .theme-toggle .fa-moon { display: block; }
 
-        [data-theme="light"] .theme-toggle .fa-sun {
-            display: block;
-        }
-        [data-theme="light"] .theme-toggle .fa-moon {
-            display: none;
-        }
+        [data-theme="dark"] .theme-toggle .fa-sun { display: block; }
+        [data-theme="dark"] .theme-toggle .fa-moon { display: none; }
 
-        /* ─── Right side: Menu ─── */
         .nav-right {
             display: flex;
             align-items: center;
@@ -401,7 +366,6 @@
             cursor: pointer;
             padding: 0;
             z-index: 10;
-            transition: all var(--transition);
             flex-shrink: 0;
         }
         .hamburger span {
@@ -431,7 +395,6 @@
             font-size: 0.93rem;
             font-weight: 500;
             align-items: center;
-            transition: all var(--transition);
         }
         .nav-links a {
             color: var(--text-dim);
@@ -448,11 +411,9 @@
             height: 2px;
             background: var(--accent);
             transition: width var(--transition);
-            box-shadow: 0 0 15px var(--accent-glow);
         }
         .nav-links a:hover {
             color: var(--text);
-            text-shadow: 0 0 20px var(--accent-glow);
         }
         .nav-links a:hover::after {
             width: 100%;
@@ -462,17 +423,8 @@
             right: auto;
             left: 0;
         }
-        body[dir="ltr"] .about-text blockquote {
-            border-right: none;
-            border-left: 4px solid var(--accent);
-            padding-right: 0;
-            padding-left: 20px;
-        }
-        body[dir="ltr"] .contact-item:hover {
-            transform: translateX(4px);
-        }
 
-        /* ─── Hero ─── */
+        /* Hero */
         .hero {
             display: flex;
             flex-direction: column;
@@ -510,16 +462,8 @@
         }
 
         @keyframes pulse-dot {
-            0%, 100% {
-                opacity: 1;
-                transform: scale(1);
-                box-shadow: 0 0 20px var(--accent-glow);
-            }
-            50% {
-                opacity: 0.5;
-                transform: scale(0.85);
-                box-shadow: 0 0 40px var(--accent-glow-strong);
-            }
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.5; transform: scale(0.85); }
         }
 
         .hero h1 {
@@ -535,7 +479,7 @@
         .hero h1 .highlight {
             color: var(--accent);
             position: relative;
-            text-shadow: 0 0 40px var(--accent-glow), 0 0 80px rgba(138, 111, 255, 0.15);
+            text-shadow: 0 0 40px var(--accent-glow);
         }
         .hero h1 .highlight::after {
             content: '';
@@ -633,18 +577,15 @@
             padding: 60px 0 40px;
             border-top: 1px solid var(--border);
             text-align: center;
-            transition: border-color 0.4s ease;
         }
         section:first-of-type {
             border-top: none;
         }
 
-        /* ─── Animations ─── */
         @keyframes fadeInUp {
             from { opacity: 0; transform: translateY(30px); }
             to { opacity: 1; transform: translateY(0); }
         }
-
         @keyframes fadeInDown {
             from { opacity: 0; transform: translateY(-20px); }
             to { opacity: 1; transform: translateY(0); }
@@ -654,20 +595,13 @@
             opacity: 0;
             transition: opacity 0.7s ease, transform 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
         }
-
-        .animate-on-scroll.visible {
-            opacity: 1;
-        }
-
+        .animate-on-scroll.visible { opacity: 1; }
         .animate-on-scroll.fade-up { transform: translateY(40px); }
         .animate-on-scroll.fade-up.visible { transform: translateY(0); }
-
         .animate-on-scroll.fade-left { transform: translateX(-40px); }
         .animate-on-scroll.fade-left.visible { transform: translateX(0); }
-
         .animate-on-scroll.fade-right { transform: translateX(40px); }
         .animate-on-scroll.fade-right.visible { transform: translateX(0); }
-
         .animate-on-scroll.scale-in { transform: scale(0.92); }
         .animate-on-scroll.scale-in.visible { transform: scale(1); }
 
@@ -675,7 +609,7 @@
             transition-delay: calc(0.07s * var(--i, 0));
         }
 
-        /* ─── About ─── */
+        /* About */
         .about-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -683,17 +617,15 @@
             margin-top: 24px;
             text-align: right;
         }
-        body[dir="ltr"] .about-grid {
-            text-align: left;
-        }
+        body[dir="ltr"] .about-grid { text-align: left; }
+
         .about-text p {
             color: var(--text-dim);
             margin-bottom: 16px;
             font-size: 1.02rem;
         }
-        .about-text p:last-child {
-            margin-bottom: 0;
-        }
+        .about-text p:last-child { margin-bottom: 0; }
+
         .about-text blockquote {
             font-size: 1.1rem;
             font-weight: 600;
@@ -743,7 +675,7 @@
             margin-top: 4px;
         }
 
-        /* ─── Skills ─── */
+        /* Skills */
         .skills-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -759,14 +691,12 @@
             text-align: center;
             transition: all var(--transition);
         }
-
         .skill-item:hover {
             background: var(--bg-card-hover);
             transform: translateY(-6px) scale(1.03);
             border-color: var(--accent);
             box-shadow: 0 8px 30px var(--accent-glow);
         }
-
         .skill-item .skill-icon {
             font-size: 2rem;
             color: var(--accent);
@@ -774,12 +704,10 @@
             margin-bottom: 10px;
             transition: all 0.4s ease;
         }
-
         .skill-item:hover .skill-icon {
             transform: scale(1.15) rotate(-4deg);
             text-shadow: 0 0 30px var(--accent-glow);
         }
-
         .skill-item .skill-name {
             font-weight: 700;
             font-size: 0.95rem;
@@ -787,14 +715,12 @@
             margin-bottom: 6px;
             color: var(--text);
         }
-
         .skill-item .skill-level-label {
             font-size: 0.7rem;
             color: var(--text-dim);
             display: block;
             margin-bottom: 8px;
         }
-
         .skill-bar-track {
             width: 100%;
             height: 5px;
@@ -802,7 +728,6 @@
             border-radius: 10px;
             overflow: hidden;
         }
-
         .skill-bar-fill {
             height: 100%;
             width: 0%;
@@ -811,7 +736,6 @@
             transition: width 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
             box-shadow: 0 0 15px var(--accent-glow);
         }
-
         .skill-item .skill-percent {
             font-size: 0.65rem;
             color: var(--accent);
@@ -820,7 +744,7 @@
             font-weight: 600;
         }
 
-        /* ─── Projects ─── */
+        /* Projects */
         .projects-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -828,9 +752,7 @@
             margin-top: 28px;
             text-align: right;
         }
-        body[dir="ltr"] .projects-grid {
-            text-align: left;
-        }
+        body[dir="ltr"] .projects-grid { text-align: left; }
 
         .project-card {
             background: var(--bg-card);
@@ -841,7 +763,6 @@
             display: flex;
             flex-direction: column;
         }
-
         .project-card:hover {
             background: var(--bg-card-hover);
             transform: translateY(-8px);
@@ -856,14 +777,12 @@
             background: var(--bg);
             overflow: hidden;
         }
-
         .project-slider .slides {
             display: flex;
             width: 100%;
             height: 100%;
             transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
         }
-
         .slide-image {
             position: relative;
             min-width: 100%;
@@ -872,7 +791,6 @@
             background: var(--bg-card);
             overflow: hidden;
         }
-
         .slide-image img {
             width: 100%;
             height: 100%;
@@ -881,10 +799,7 @@
             opacity: 0;
             transition: opacity 0.7s ease;
         }
-
-        .slide-image img.loaded {
-            opacity: 1;
-        }
+        .slide-image img.loaded { opacity: 1; }
 
         .project-slider .slider-btn {
             position: absolute;
@@ -906,27 +821,15 @@
             z-index: 2;
             opacity: 0.7;
         }
-
         .project-slider .slider-btn:hover {
             background: var(--accent);
             opacity: 1;
             transform: translateY(-50%) scale(1.1);
         }
-
-        .project-slider .slider-btn.prev {
-            right: 8px;
-        }
-        .project-slider .slider-btn.next {
-            left: 8px;
-        }
-        body[dir="ltr"] .project-slider .slider-btn.prev {
-            right: auto;
-            left: 8px;
-        }
-        body[dir="ltr"] .project-slider .slider-btn.next {
-            left: auto;
-            right: 8px;
-        }
+        .project-slider .slider-btn.prev { right: 8px; }
+        .project-slider .slider-btn.next { left: 8px; }
+        body[dir="ltr"] .project-slider .slider-btn.prev { right: auto; left: 8px; }
+        body[dir="ltr"] .project-slider .slider-btn.next { left: auto; right: 8px; }
 
         .project-slider .dots {
             position: absolute;
@@ -937,7 +840,6 @@
             gap: 6px;
             z-index: 2;
         }
-
         .project-slider .dots .dot {
             width: 8px;
             height: 8px;
@@ -948,7 +850,6 @@
             cursor: pointer;
             transition: all 0.3s ease;
         }
-
         .project-slider .dots .dot.active {
             background: var(--accent);
             transform: scale(1.3);
@@ -961,28 +862,24 @@
             flex-direction: column;
             flex: 1;
         }
-
         .project-card h3 {
             font-size: 1.2rem;
             font-weight: 700;
             margin-bottom: 8px;
             color: var(--text);
         }
-
         .project-card p {
             color: var(--text-dim);
             font-size: 0.95rem;
             flex: 1;
             margin-bottom: 18px;
         }
-
         .project-tags {
             display: flex;
             flex-wrap: wrap;
             gap: 8px;
             margin-bottom: 18px;
         }
-
         .project-tags span {
             background: var(--bg);
             border: 1px solid var(--border);
@@ -994,7 +891,6 @@
             letter-spacing: 0.04em;
             color: var(--text-dim);
         }
-
         .project-card .card-link {
             font-weight: 600;
             font-size: 0.9rem;
@@ -1005,22 +901,15 @@
             color: var(--accent);
             transition: all var(--transition);
         }
-
         .project-card .card-link:hover {
             gap: 14px;
             text-shadow: 0 0 30px var(--accent-glow);
         }
-        .project-card .card-link:hover i {
-            transform: translateX(-4px);
-        }
-        body[dir="ltr"] .project-card .card-link:hover i {
-            transform: translateX(4px);
-        }
-        body[dir="ltr"] .project-card .card-link i {
-            transform: scaleX(-1);
-        }
+        .project-card .card-link:hover i { transform: translateX(-4px); }
+        body[dir="ltr"] .project-card .card-link:hover i { transform: translateX(4px); }
+        body[dir="ltr"] .project-card .card-link i { transform: scaleX(-1); }
 
-        /* ─── Contact ─── */
+        /* Contact */
         .contact-wrap {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -1028,9 +917,8 @@
             margin-top: 24px;
             text-align: right;
         }
-        body[dir="ltr"] .contact-wrap {
-            text-align: left;
-        }
+        body[dir="ltr"] .contact-wrap { text-align: left; }
+
         .contact-info p {
             color: var(--text-dim);
             margin-bottom: 24px;
@@ -1052,20 +940,14 @@
             transform: translateX(-4px);
             box-shadow: 0 0 30px var(--accent-glow);
         }
-        body[dir="ltr"] .contact-item:hover {
-            transform: translateX(4px);
-        }
+        body[dir="ltr"] .contact-item:hover { transform: translateX(4px); }
         .contact-item i {
             width: 24px;
             font-size: 1.2rem;
             color: var(--accent);
         }
-        .contact-item a {
-            color: var(--text-dim);
-        }
-        .contact-item a:hover {
-            color: var(--text);
-        }
+        .contact-item a { color: var(--text-dim); }
+        .contact-item a:hover { color: var(--text); }
 
         footer {
             border-top: 1px solid var(--border);
@@ -1084,50 +966,23 @@
             display: inline-block;
             transition: all 0.3s ease;
         }
-        footer .heart:hover {
-            transform: scale(1.3);
-        }
+        footer .heart:hover { transform: scale(1.3); }
 
-        /* ══════════════════════════════════════
-           RESPONSIVE
-        ══════════════════════════════════════ */
+        /* Responsive */
         @media (max-width: 768px) {
-            body {
-                padding: 0 16px;
-            }
+            body { padding: 0 16px; }
+            .container { padding: 12px 0 40px; }
 
-            .container {
-                padding: 12px 0 40px;
-            }
-
-            nav {
-                padding: 12px 0;
-                gap: 8px;
-            }
-
-            .nav-left {
-                gap: 8px;
-            }
-
-            .logo {
-                font-size: 1.15rem;
-            }
-
+            nav { padding: 12px 0; gap: 8px; }
+            .nav-left { gap: 8px; }
+            .logo { font-size: 1.15rem; }
             .lang-dropdown-btn {
                 padding: 6px 11px;
                 font-size: 0.75rem;
                 min-width: 68px;
             }
-
-            .theme-toggle {
-                width: 38px;
-                height: 38px;
-                font-size: 1rem;
-            }
-
-            .hamburger {
-                display: flex;
-            }
+            .theme-toggle { width: 38px; height: 38px; font-size: 1rem; }
+            .hamburger { display: flex; }
 
             .nav-links {
                 position: absolute;
@@ -1149,66 +1004,40 @@
                             opacity 0.3s ease,
                             visibility 0.3s ease,
                             padding 0.3s ease;
-                box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+                box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
                 z-index: 999;
             }
-
             .nav-links.open {
                 max-height: 320px;
                 opacity: 1;
                 visibility: visible;
                 padding: 12px 0 16px;
             }
-
-            .nav-links li {
-                width: 100%;
-                text-align: center;
-            }
-
+            .nav-links li { width: 100%; text-align: center; }
             .nav-links a {
                 display: block;
                 padding: 14px 20px;
                 font-size: 1.05rem;
             }
-
             .nav-links a:hover {
                 background: var(--bg-card);
                 color: var(--text);
             }
+            .nav-links a::after { display: none; }
 
-            .nav-links a::after {
-                display: none;
-            }
+            .lang-dropdown-menu { right: auto; left: 0; }
+            body[dir="ltr"] .lang-dropdown-menu { right: 0; left: auto; }
 
-            .lang-dropdown-menu {
-                right: auto;
-                left: 0;
-            }
-            body[dir="ltr"] .lang-dropdown-menu {
-                right: 0;
-                left: auto;
-            }
+            .hero { padding: 36px 0 30px; gap: 22px; }
+            .hero h1 { font-size: clamp(1.9rem, 9vw, 2.8rem); }
+            .hero p { font-size: 1.02rem; }
 
-            .hero {
-                padding: 36px 0 30px;
-                gap: 22px;
-            }
-            .hero h1 {
-                font-size: clamp(1.9rem, 9vw, 2.8rem);
-            }
-            .hero p {
-                font-size: 1.02rem;
-            }
-
-            .about-grid,
-            .contact-wrap {
+            .about-grid, .contact-wrap {
                 grid-template-columns: 1fr;
                 gap: 28px;
                 text-align: center;
             }
-            .about-grid .about-text {
-                text-align: center;
-            }
+            .about-grid .about-text { text-align: center; }
             .about-text blockquote {
                 text-align: center;
                 border-right: none !important;
@@ -1216,97 +1045,41 @@
                 padding-right: 0 !important;
                 padding-left: 0 !important;
             }
-            .stat-cards {
-                grid-template-columns: 1fr 1fr;
-            }
+            .stat-cards { grid-template-columns: 1fr 1fr; }
+            .projects-grid { grid-template-columns: 1fr; }
+            .skills-grid { grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); }
 
-            .projects-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .skills-grid {
-                grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-            }
-
-            footer {
-                flex-direction: column;
-                text-align: center;
-                gap: 12px;
-            }
-            .contact-item {
-                justify-content: center;
-            }
-            .contact-info p {
-                text-align: center;
-            }
+            footer { flex-direction: column; text-align: center; gap: 12px; }
+            .contact-item { justify-content: center; }
+            .contact-info p { text-align: center; }
         }
 
         @media (max-width: 480px) {
-            body {
-                padding: 0 14px;
-            }
-
-            .logo {
-                font-size: 1.05rem;
-            }
-
+            body { padding: 0 14px; }
+            .logo { font-size: 1.05rem; }
             .lang-dropdown-btn {
                 padding: 5px 10px;
                 font-size: 0.7rem;
                 min-width: 60px;
                 gap: 5px;
             }
+            .theme-toggle { width: 36px; height: 36px; font-size: 0.95rem; }
+            .hamburger { width: 24px; height: 16px; }
+            .hamburger.active span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+            .hamburger.active span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 
-            .theme-toggle {
-                width: 36px;
-                height: 36px;
-                font-size: 0.95rem;
-            }
-
-            .hamburger {
-                width: 24px;
-                height: 16px;
-            }
-            .hamburger.active span:nth-child(1) {
-                transform: translateY(7px) rotate(45deg);
-            }
-            .hamburger.active span:nth-child(3) {
-                transform: translateY(-7px) rotate(-45deg);
-            }
-
-            .hero-actions {
-                flex-direction: column;
-                width: 100%;
-            }
-            .hero-actions .btn {
-                justify-content: center;
-                width: 100%;
-            }
-
-            .stat-cards {
-                grid-template-columns: 1fr;
-            }
-
-            .skills-grid {
-                grid-template-columns: 1fr 1fr;
-                gap: 12px;
-            }
-
-            .project-slider .slider-btn {
-                width: 28px;
-                height: 28px;
-                font-size: 0.75rem;
-            }
-
-            .loader-track {
-                width: 180px;
-            }
+            .hero-actions { flex-direction: column; width: 100%; }
+            .hero-actions .btn { justify-content: center; width: 100%; }
+            .stat-cards { grid-template-columns: 1fr; }
+            .skills-grid { grid-template-columns: 1fr 1fr; gap: 12px; }
+            .project-slider .slider-btn { width: 28px; height: 28px; font-size: 0.75rem; }
+            .loader-track { width: 180px; }
         }
     </style>
 </head>
 <body>
 
-    <!-- ─── PRELOADER ─── -->
+    <!-- Preloader -->
     <div id="preloader">
         <div class="loader-label" data-i18n="loading">در حال بارگذاری منابع</div>
         <div class="loader-percent" id="loaderPercent">0%</div>
@@ -1315,16 +1088,13 @@
         </div>
     </div>
 
-    <!-- ─── MAIN CONTENT ─── -->
     <div class="container">
 
         <!-- Nav -->
         <nav>
-            <!-- Left: Logo + Language + Theme Toggle (now together) -->
             <div class="nav-left">
                 <div class="logo">MRHX01</div>
 
-                <!-- Language Switcher -->
                 <div class="lang-dropdown">
                     <button class="lang-dropdown-btn" id="langDropdownBtn" aria-label="انتخاب زبان">
                         <span class="flag">🇮🇷</span>
@@ -1335,20 +1105,18 @@
                         <button data-lang="fa" class="active-lang">
                             <span class="flag">🇮🇷</span> فارسی
                         </button>
-                        <!-- <button data-lang="en">
+                        <button data-lang="en">
                             <span class="flag">🇬🇧</span> English
-                        </button> -->
+                        </button>
                     </div>
                 </div>
 
-                <!-- Dark / Light Mode Toggle (moved here) -->
                 <button class="theme-toggle" id="themeToggle" aria-label="تغییر تم">
                     <i class="fas fa-moon"></i>
                     <i class="fas fa-sun"></i>
                 </button>
             </div>
 
-            <!-- Right: Hamburger + Menu -->
             <div class="nav-right">
                 <button class="hamburger" id="hamburger" aria-label="منو" aria-expanded="false">
                     <span></span>
@@ -1404,23 +1172,9 @@
             <h2 class="section-title animate-on-scroll fade-up" data-i18n="about.title">کیفیت کد، آینده پروژه است</h2>
             <div class="about-grid">
                 <div class="about-text animate-on-scroll fade-left">
-                    <p data-i18n="about.p1">
-                        من روح‌اله حسینی هستم، توسعه‌دهنده وب با ۳ سال سابقه کاری.
-                        تخصص اصلی من در طراحی و پیاده‌سازی <strong>API</strong>های کارآمد،
-                        سیستم‌های <strong>اتوماسیون</strong>، <strong>ربات</strong>های تلگرامی
-                        و <strong>پنل‌های مدیریتی</strong> پیشرفته است.
-                    </p>
-                    <p data-i18n="about.p2">
-                        با تسلط بر <strong>C#</strong> و <strong>Python</strong> و فریم‌ورک‌های
-                        <strong>ASP.NET Core</strong> و <strong>Django</strong>،
-                        راه‌حل‌های مقیاس‌پذیر و بهینه برای چالش‌های کسب‌وکار طراحی می‌کنم.
-                        به Frontend نیز تسلط دارم و تجربه کار با <strong>HTML5</strong>،
-                        <strong>CSS3</strong>، <strong>Bootstrap</strong> و <strong>jQuery</strong>
-                        را دارم.
-                    </p>
-                    <blockquote data-i18n="about.quote">
-                        «یادگیری پایانی ندارد و هر روز فرصتی برای بهتر نوشتن است.»
-                    </blockquote>
+                    <p data-i18n="about.p1"></p>
+                    <p data-i18n="about.p2"></p>
+                    <blockquote data-i18n="about.quote"></blockquote>
                 </div>
                 <div class="stat-cards animate-on-scroll fade-right stagger-children">
                     <div class="stat-card" style="--i:0;">
@@ -1447,270 +1201,130 @@
         <section id="skills">
             <span class="section-label animate-on-scroll fade-up" data-i18n="skills.label">مهارت‌ها</span>
             <h2 class="section-title animate-on-scroll fade-up" data-i18n="skills.title">سطح تخصص</h2>
-            <p class="section-sub animate-on-scroll fade-up" data-i18n="skills.sub">
-                میزان تسلط من بر زبان‌ها و ابزارهای مختلف.
-            </p>
-            <div class="skills-grid stagger-children">
+            <p class="section-sub animate-on-scroll fade-up" data-i18n="skills.sub"></p>
+            <div class="skills-grid stagger-children" id="skillsGrid">
+                <!-- Skills will be rendered by JS if needed, currently static is fine -->
                 <div class="skill-item animate-on-scroll scale-in" style="--i:0;">
                     <i class="fa-solid fa-hashtag skill-icon"></i>
                     <span class="skill-name">C#</span>
                     <span class="skill-level-label" data-i18n="skills.level.pro">حرفه‌ای</span>
-                    <div class="skill-bar-track">
-                        <div class="skill-bar-fill" data-width="92"></div>
-                    </div>
+                    <div class="skill-bar-track"><div class="skill-bar-fill" data-width="92"></div></div>
                     <span class="skill-percent">۹۲٪</span>
                 </div>
                 <div class="skill-item animate-on-scroll scale-in" style="--i:1;">
                     <i class="fab fa-python skill-icon"></i>
                     <span class="skill-name">Python</span>
                     <span class="skill-level-label" data-i18n="skills.level.pro">حرفه‌ای</span>
-                    <div class="skill-bar-track">
-                        <div class="skill-bar-fill" data-width="88"></div>
-                    </div>
+                    <div class="skill-bar-track"><div class="skill-bar-fill" data-width="88"></div></div>
                     <span class="skill-percent">۸۸٪</span>
                 </div>
                 <div class="skill-item animate-on-scroll scale-in" style="--i:2;">
                     <i class="fab fa-js skill-icon"></i>
                     <span class="skill-name">JavaScript</span>
                     <span class="skill-level-label" data-i18n="skills.level.intermediate">متوسط</span>
-                    <div class="skill-bar-track">
-                        <div class="skill-bar-fill" data-width="70"></div>
-                    </div>
+                    <div class="skill-bar-track"><div class="skill-bar-fill" data-width="70"></div></div>
                     <span class="skill-percent">۷۰٪</span>
                 </div>
                 <div class="skill-item animate-on-scroll scale-in" style="--i:3;">
                     <i class="fab fa-html5 skill-icon"></i>
                     <span class="skill-name">HTML5</span>
                     <span class="skill-level-label" data-i18n="skills.level.pro">حرفه‌ای</span>
-                    <div class="skill-bar-track">
-                        <div class="skill-bar-fill" data-width="95"></div>
-                    </div>
+                    <div class="skill-bar-track"><div class="skill-bar-fill" data-width="95"></div></div>
                     <span class="skill-percent">۹۵٪</span>
                 </div>
                 <div class="skill-item animate-on-scroll scale-in" style="--i:4;">
                     <i class="fab fa-css3-alt skill-icon"></i>
                     <span class="skill-name">CSS3</span>
                     <span class="skill-level-label" data-i18n="skills.level.pro">حرفه‌ای</span>
-                    <div class="skill-bar-track">
-                        <div class="skill-bar-fill" data-width="90"></div>
-                    </div>
+                    <div class="skill-bar-track"><div class="skill-bar-fill" data-width="90"></div></div>
                     <span class="skill-percent">۹۰٪</span>
                 </div>
                 <div class="skill-item animate-on-scroll scale-in" style="--i:5;">
                     <i class="fab fa-bootstrap skill-icon"></i>
                     <span class="skill-name">Bootstrap</span>
                     <span class="skill-level-label" data-i18n="skills.level.pro">حرفه‌ای</span>
-                    <div class="skill-bar-track">
-                        <div class="skill-bar-fill" data-width="90"></div>
-                    </div>
+                    <div class="skill-bar-track"><div class="skill-bar-fill" data-width="90"></div></div>
                     <span class="skill-percent">۹۰٪</span>
                 </div>
                 <div class="skill-item animate-on-scroll scale-in" style="--i:6;">
                     <i class="fas fa-code skill-icon"></i>
                     <span class="skill-name">jQuery</span>
                     <span class="skill-level-label" data-i18n="skills.level.pro">حرفه‌ای</span>
-                    <div class="skill-bar-track">
-                        <div class="skill-bar-fill" data-width="85"></div>
-                    </div>
+                    <div class="skill-bar-track"><div class="skill-bar-fill" data-width="85"></div></div>
                     <span class="skill-percent">۸۵٪</span>
                 </div>
                 <div class="skill-item animate-on-scroll scale-in" style="--i:7;">
                     <i class="fab fa-python skill-icon"></i>
                     <span class="skill-name">Django</span>
                     <span class="skill-level-label" data-i18n="skills.level.pro">حرفه‌ای</span>
-                    <div class="skill-bar-track">
-                        <div class="skill-bar-fill" data-width="85"></div>
-                    </div>
+                    <div class="skill-bar-track"><div class="skill-bar-fill" data-width="85"></div></div>
                     <span class="skill-percent">۸۵٪</span>
                 </div>
                 <div class="skill-item animate-on-scroll scale-in" style="--i:8;">
                     <i class="fas fa-server skill-icon"></i>
                     <span class="skill-name">DRF</span>
                     <span class="skill-level-label" data-i18n="skills.level.pro">حرفه‌ای</span>
-                    <div class="skill-bar-track">
-                        <div class="skill-bar-fill" data-width="82"></div>
-                    </div>
+                    <div class="skill-bar-track"><div class="skill-bar-fill" data-width="82"></div></div>
                     <span class="skill-percent">۸۲٪</span>
                 </div>
                 <div class="skill-item animate-on-scroll scale-in" style="--i:9;">
                     <i class="fab fa-microsoft skill-icon"></i>
                     <span class="skill-name">ASP.NET Core</span>
                     <span class="skill-level-label" data-i18n="skills.level.pro">حرفه‌ای</span>
-                    <div class="skill-bar-track">
-                        <div class="skill-bar-fill" data-width="88"></div>
-                    </div>
+                    <div class="skill-bar-track"><div class="skill-bar-fill" data-width="88"></div></div>
                     <span class="skill-percent">۸۸٪</span>
                 </div>
                 <div class="skill-item animate-on-scroll scale-in" style="--i:10;">
                     <i class="fas fa-cloud skill-icon"></i>
                     <span class="skill-name">ASP.NET Web API</span>
                     <span class="skill-level-label" data-i18n="skills.level.pro">حرفه‌ای</span>
-                    <div class="skill-bar-track">
-                        <div class="skill-bar-fill" data-width="90"></div>
-                    </div>
+                    <div class="skill-bar-track"><div class="skill-bar-fill" data-width="90"></div></div>
                     <span class="skill-percent">۹۰٪</span>
                 </div>
                 <div class="skill-item animate-on-scroll scale-in" style="--i:11;">
                     <i class="fab fa-windows skill-icon"></i>
                     <span class="skill-name">Windows Form</span>
                     <span class="skill-level-label" data-i18n="skills.level.intermediate">متوسط</span>
-                    <div class="skill-bar-track">
-                        <div class="skill-bar-fill" data-width="65"></div>
-                    </div>
+                    <div class="skill-bar-track"><div class="skill-bar-fill" data-width="65"></div></div>
                     <span class="skill-percent">۶۵٪</span>
                 </div>
                 <div class="skill-item animate-on-scroll scale-in" style="--i:12;">
                     <i class="fas fa-paint-brush skill-icon"></i>
                     <span class="skill-name">UI/UX</span>
                     <span class="skill-level-label" data-i18n="skills.level.pro">حرفه‌ای</span>
-                    <div class="skill-bar-track">
-                        <div class="skill-bar-fill" data-width="80"></div>
-                    </div>
+                    <div class="skill-bar-track"><div class="skill-bar-fill" data-width="80"></div></div>
                     <span class="skill-percent">۸۰٪</span>
                 </div>
                 <div class="skill-item animate-on-scroll scale-in" style="--i:13;">
                     <i class="fas fa-palette skill-icon"></i>
                     <span class="skill-name">Web Design</span>
                     <span class="skill-level-label" data-i18n="skills.level.pro">حرفه‌ای</span>
-                    <div class="skill-bar-track">
-                        <div class="skill-bar-fill" data-width="82"></div>
-                    </div>
+                    <div class="skill-bar-track"><div class="skill-bar-fill" data-width="82"></div></div>
                     <span class="skill-percent">۸۲٪</span>
                 </div>
                 <div class="skill-item animate-on-scroll scale-in" style="--i:14;">
                     <i class="fab fa-linux skill-icon"></i>
                     <span class="skill-name">Linux</span>
                     <span class="skill-level-label" data-i18n="skills.level.intermediate">متوسط</span>
-                    <div class="skill-bar-track">
-                        <div class="skill-bar-fill" data-width="65"></div>
-                    </div>
+                    <div class="skill-bar-track"><div class="skill-bar-fill" data-width="65"></div></div>
                     <span class="skill-percent">۶۵٪</span>
                 </div>
                 <div class="skill-item animate-on-scroll scale-in" style="--i:15;">
                     <i class="fab fa-git-alt skill-icon"></i>
                     <span class="skill-name">Git / GitHub</span>
                     <span class="skill-level-label" data-i18n="skills.level.pro">حرفه‌ای</span>
-                    <div class="skill-bar-track">
-                        <div class="skill-bar-fill" data-width="88"></div>
-                    </div>
+                    <div class="skill-bar-track"><div class="skill-bar-fill" data-width="88"></div></div>
                     <span class="skill-percent">۸۸٪</span>
                 </div>
             </div>
         </section>
 
-        <!-- Projects -->
+        <!-- Projects (Dynamically rendered from JSON) -->
         <section id="projects">
             <span class="section-label animate-on-scroll fade-up" data-i18n="projects.label">نمونه کارها</span>
             <h2 class="section-title animate-on-scroll fade-up" data-i18n="projects.title">آخرین پروژه‌ها</h2>
-
-            <div class="projects-grid stagger-children">
-                <!-- Project 1 -->
-                <div class="project-card animate-on-scroll scale-in" style="--i:0;">
-                    <div class="project-slider" data-slider="0">
-                        <div class="slides">
-                            <div class="slide-image">
-                                <img src="https://picsum.photos/seed/office1/600/400" alt="اتوماسیون اداری ۱" loading="lazy" />
-                            </div>
-                            <div class="slide-image">
-                                <img src="https://picsum.photos/seed/office2/600/400" alt="اتوماسیون اداری ۲" loading="lazy" />
-                            </div>
-                            <div class="slide-image">
-                                <img src="https://picsum.photos/seed/office3/600/400" alt="اتوماسیون اداری ۳" loading="lazy" />
-                            </div>
-                        </div>
-                        <button class="slider-btn prev" aria-label="قبلی"><i class="fas fa-chevron-right"></i></button>
-                        <button class="slider-btn next" aria-label="بعدی"><i class="fas fa-chevron-left"></i></button>
-                        <div class="dots"></div>
-                    </div>
-                    <div class="card-body">
-                        <h3 data-i18n="projects.p1.title">سامانه اتوماسیون اداری</h3>
-                        <p data-i18n="projects.p1.desc">
-                            سیستم مدیریت فرآیندهای سازمانی با گردش کار پیشرفته،
-                            پنل مدیریتی اختصاصی و API یکپارچه.
-                        </p>
-                        <div class="project-tags">
-                            <span>C#</span>
-                            <span>ASP.NET Core</span>
-                            <span>React</span>
-                        </div>
-                        <a href="#" class="card-link">
-                            <span data-i18n="projects.cta">مشاهده پروژه</span>
-                            <i class="fas fa-arrow-left"></i>
-                        </a>
-                    </div>
-                </div>
-
-                <!-- Project 2 -->
-                <div class="project-card animate-on-scroll scale-in" style="--i:1;">
-                    <div class="project-slider" data-slider="1">
-                        <div class="slides">
-                            <div class="slide-image">
-                                <img src="https://picsum.photos/seed/bot1/600/400" alt="ربات تلگرام ۱" loading="lazy" />
-                            </div>
-                            <div class="slide-image">
-                                <img src="https://picsum.photos/seed/bot2/600/400" alt="ربات تلگرام ۲" loading="lazy" />
-                            </div>
-                            <div class="slide-image">
-                                <img src="https://picsum.photos/seed/bot3/600/400" alt="ربات تلگرام ۳" loading="lazy" />
-                            </div>
-                        </div>
-                        <button class="slider-btn prev" aria-label="قبلی"><i class="fas fa-chevron-right"></i></button>
-                        <button class="slider-btn next" aria-label="بعدی"><i class="fas fa-chevron-left"></i></button>
-                        <div class="dots"></div>
-                    </div>
-                    <div class="card-body">
-                        <h3 data-i18n="projects.p2.title">ربات هوشمند تلگرام</h3>
-                        <p data-i18n="projects.p2.desc">
-                            ربات پردازش سفارشات با اتصال به درگاه پرداخت،
-                            گزارش‌گیری خودکار و مدیریت کاربران از طریق پنل Django.
-                        </p>
-                        <div class="project-tags">
-                            <span>Python</span>
-                            <span>Django</span>
-                            <span>Telegram API</span>
-                        </div>
-                        <a href="#" class="card-link">
-                            <span data-i18n="projects.cta">مشاهده پروژه</span>
-                            <i class="fas fa-arrow-left"></i>
-                        </a>
-                    </div>
-                </div>
-
-                <!-- Project 3 -->
-                <div class="project-card animate-on-scroll scale-in" style="--i:2;">
-                    <div class="project-slider" data-slider="2">
-                        <div class="slides">
-                            <div class="slide-image">
-                                <img src="https://picsum.photos/seed/dash1/600/400" alt="پنل مدیریتی ۱" loading="lazy" />
-                            </div>
-                            <div class="slide-image">
-                                <img src="https://picsum.photos/seed/dash2/600/400" alt="پنل مدیریتی ۲" loading="lazy" />
-                            </div>
-                            <div class="slide-image">
-                                <img src="https://picsum.photos/seed/dash3/600/400" alt="پنل مدیریتی ۳" loading="lazy" />
-                            </div>
-                        </div>
-                        <button class="slider-btn prev" aria-label="قبلی"><i class="fas fa-chevron-right"></i></button>
-                        <button class="slider-btn next" aria-label="بعدی"><i class="fas fa-chevron-left"></i></button>
-                        <div class="dots"></div>
-                    </div>
-                    <div class="card-body">
-                        <h3 data-i18n="projects.p3.title">پنل مدیریتی پیشرفته</h3>
-                        <p data-i18n="projects.p3.desc">
-                            داشبورد تحلیلی با نمایش لحظه‌ای داده‌ها، نمودارهای تعاملی
-                            و سیستم احراز هویت چندسطحی برای سازمان‌های بزرگ.
-                        </p>
-                        <div class="project-tags">
-                            <span>C#</span>
-                            <span>ASP.NET Web API</span>
-                            <span>Bootstrap</span>
-                        </div>
-                        <a href="#" class="card-link">
-                            <span data-i18n="projects.cta">مشاهده پروژه</span>
-                            <i class="fas fa-arrow-left"></i>
-                        </a>
-                    </div>
-                </div>
+            <div class="projects-grid stagger-children" id="projectsGrid">
+                <!-- Projects will be injected here by JavaScript -->
             </div>
         </section>
 
@@ -1720,10 +1334,7 @@
             <h2 class="section-title animate-on-scroll fade-up" data-i18n="contact.title">بیایید در ارتباط باشیم</h2>
             <div class="contact-wrap">
                 <div class="contact-info animate-on-scroll scale-in" style="grid-column: 1 / -1; max-width: 600px; margin: 0 auto; text-align: center;">
-                    <p data-i18n="contact.desc">
-                        همیشه برای گفتگوهای جذاب، پروژه‌های فریلنسری یا
-                        فرصت‌های جدید شغلی آماده‌ام. از طریق راه‌های زیر با من در تماس باشید:
-                    </p>
+                    <p data-i18n="contact.desc"></p>
                     <div class="contact-item" style="justify-content: center;">
                         <i class="fas fa-envelope"></i>
                         <a href="mailto:mrhx01@proton.me">mrhx01@proton.me</a>
@@ -1757,7 +1368,6 @@
 
     </div>
 
-    <!-- ─── SCRIPTS ─── -->
     <script>
         (function() {
             'use strict';
@@ -1805,18 +1415,38 @@
                         label: 'نمونه کارها',
                         title: 'آخرین پروژه‌ها',
                         cta: 'مشاهده پروژه',
-                        p1: {
-                            title: 'سامانه اتوماسیون اداری',
-                            desc: 'سیستم مدیریت فرآیندهای سازمانی با گردش کار پیشرفته، پنل مدیریتی اختصاصی و API یکپارچه.'
-                        },
-                        p2: {
-                            title: 'ربات هوشمند تلگرام',
-                            desc: 'ربات پردازش سفارشات با اتصال به درگاه پرداخت، گزارش‌گیری خودکار و مدیریت کاربران از طریق پنل Django.'
-                        },
-                        p3: {
-                            title: 'پنل مدیریتی پیشرفته',
-                            desc: 'داشبورد تحلیلی با نمایش لحظه‌ای داده‌ها، نمودارهای تعاملی و سیستم احراز هویت چندسطحی برای سازمان‌های بزرگ.'
-                        }
+                        items: [
+                            {
+                                title: 'سامانه اتوماسیون اداری',
+                                desc: 'سیستم مدیریت فرآیندهای سازمانی با گردش کار پیشرفته، پنل مدیریتی اختصاصی و API یکپارچه.',
+                                tags: ['C#', 'ASP.NET Core', 'React'],
+                                images: [
+                                    'https://picsum.photos/seed/office1/600/400',
+                                    'https://picsum.photos/seed/office2/600/400',
+                                    'https://picsum.photos/seed/office3/600/400'
+                                ]
+                            },
+                            {
+                                title: 'ربات هوشمند تلگرام',
+                                desc: 'ربات پردازش سفارشات با اتصال به درگاه پرداخت، گزارش‌گیری خودکار و مدیریت کاربران از طریق پنل Django.',
+                                tags: ['Python', 'Django', 'Telegram API'],
+                                images: [
+                                    'https://picsum.photos/seed/bot1/600/400',
+                                    'https://picsum.photos/seed/bot2/600/400',
+                                    'https://picsum.photos/seed/bot3/600/400'
+                                ]
+                            },
+                            {
+                                title: 'پنل مدیریتی پیشرفته',
+                                desc: 'داشبورد تحلیلی با نمایش لحظه‌ای داده‌ها، نمودارهای تعاملی و سیستم احراز هویت چندسطحی برای سازمان‌های بزرگ.',
+                                tags: ['C#', 'ASP.NET Web API', 'Bootstrap'],
+                                images: [
+                                    'https://picsum.photos/seed/dash1/600/400',
+                                    'https://picsum.photos/seed/dash2/600/400',
+                                    'https://picsum.photos/seed/dash3/600/400'
+                                ]
+                            }
+                        ]
                     },
                     contact: {
                         label: 'ارتباط با من',
@@ -1870,18 +1500,38 @@
                         label: 'Portfolio',
                         title: 'Latest Projects',
                         cta: 'View Project',
-                        p1: {
-                            title: 'Office Automation System',
-                            desc: 'Organizational process management system with advanced workflow, dedicated admin panel, and unified API for integration with other systems.'
-                        },
-                        p2: {
-                            title: 'Smart Telegram Bot',
-                            desc: 'Order processing bot with payment gateway integration, automated reporting, and user management through Django admin panel.'
-                        },
-                        p3: {
-                            title: 'Advanced Admin Panel',
-                            desc: 'Analytical dashboard with real-time data visualization, interactive charts, and multi-level authentication system for large organizations.'
-                        }
+                        items: [
+                            {
+                                title: 'Office Automation System',
+                                desc: 'Organizational process management system with advanced workflow, dedicated admin panel, and unified API for integration with other systems.',
+                                tags: ['C#', 'ASP.NET Core', 'React'],
+                                images: [
+                                    'https://picsum.photos/seed/office1/600/400',
+                                    'https://picsum.photos/seed/office2/600/400',
+                                    'https://picsum.photos/seed/office3/600/400'
+                                ]
+                            },
+                            {
+                                title: 'Smart Telegram Bot',
+                                desc: 'Order processing bot with payment gateway integration, automated reporting, and user management through Django admin panel.',
+                                tags: ['Python', 'Django', 'Telegram API'],
+                                images: [
+                                    'https://picsum.photos/seed/bot1/600/400',
+                                    'https://picsum.photos/seed/bot2/600/400',
+                                    'https://picsum.photos/seed/bot3/600/400'
+                                ]
+                            },
+                            {
+                                title: 'Advanced Admin Panel',
+                                desc: 'Analytical dashboard with real-time data visualization, interactive charts, and multi-level authentication system for large organizations.',
+                                tags: ['C#', 'ASP.NET Web API', 'Bootstrap'],
+                                images: [
+                                    'https://picsum.photos/seed/dash1/600/400',
+                                    'https://picsum.photos/seed/dash2/600/400',
+                                    'https://picsum.photos/seed/dash3/600/400'
+                                ]
+                            }
+                        ]
                     },
                     contact: {
                         label: 'Contact',
@@ -1896,30 +1546,22 @@
             };
 
             let currentLang = 'fa';
-
-            const langNames = {
-                fa: 'فارسی',
-                en: 'English'
-            };
+            const langNames = { fa: 'فارسی', en: 'English' };
 
             // ── Preloader ──
             const preloader = document.getElementById('preloader');
             const percentEl = document.getElementById('loaderPercent');
             const barEl = document.getElementById('loaderBar');
-
             let progress = 0;
             let interval = null;
 
             function startProgress() {
                 interval = setInterval(function() {
                     let increment = 0;
-                    if (progress < 50) {
-                        increment = Math.floor(Math.random() * 3) + 2;
-                    } else if (progress < 75) {
-                        increment = Math.floor(Math.random() * 2) + 1;
-                    } else if (progress < 90) {
-                        increment = Math.random() < 0.3 ? 1 : 0;
-                    } else {
+                    if (progress < 50) increment = Math.floor(Math.random() * 3) + 2;
+                    else if (progress < 75) increment = Math.floor(Math.random() * 2) + 1;
+                    else if (progress < 90) increment = Math.random() < 0.3 ? 1 : 0;
+                    else {
                         clearInterval(interval);
                         interval = null;
                         return;
@@ -1936,34 +1578,22 @@
             }
 
             function finishLoading() {
-                if (interval) {
-                    clearInterval(interval);
-                    interval = null;
-                }
+                if (interval) { clearInterval(interval); interval = null; }
                 progress = 100;
                 updateUI(100);
-                setTimeout(function() {
-                    preloader.classList.add('hidden');
-                }, 400);
+                setTimeout(function() { preloader.classList.add('hidden'); }, 400);
             }
 
             startProgress();
-
-            if (document.readyState === 'complete') {
-                finishLoading();
-            } else {
-                window.addEventListener('load', finishLoading);
-            }
-
+            if (document.readyState === 'complete') finishLoading();
+            else window.addEventListener('load', finishLoading);
             setTimeout(function() {
-                if (!preloader.classList.contains('hidden')) {
-                    finishLoading();
-                }
+                if (!preloader.classList.contains('hidden')) finishLoading();
             }, 5000);
 
-            // ── Theme Toggle ──
+            // ── Theme (Default = Light) ──
             const themeToggle = document.getElementById('themeToggle');
-            let currentTheme = localStorage.getItem('theme') || 'dark';
+            let currentTheme = localStorage.getItem('theme') || 'light';
 
             function setTheme(theme) {
                 currentTheme = theme;
@@ -1972,7 +1602,7 @@
             }
 
             themeToggle.addEventListener('click', function() {
-                const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+                const newTheme = currentTheme === 'light' ? 'dark' : 'light';
                 setTheme(newTheme);
             });
 
@@ -1994,7 +1624,63 @@
                 dropdownBtn.classList.remove('active');
             });
 
-            // ── i18n Function ──
+            // ── Render Projects from JSON ──
+            function renderProjects(lang) {
+                const grid = document.getElementById('projectsGrid');
+                const items = translations[lang].projects.items;
+                const ctaText = translations[lang].projects.cta;
+
+                grid.innerHTML = '';
+
+                items.forEach(function(project, index) {
+                    const card = document.createElement('div');
+                    card.className = 'project-card animate-on-scroll scale-in';
+                    card.style.setProperty('--i', index);
+
+                    // Build slides
+                    let slidesHTML = '';
+                    project.images.forEach(function(imgSrc, i) {
+                        slidesHTML += `
+                            <div class="slide-image">
+                                <img src="${imgSrc}" alt="${project.title} ${i + 1}" loading="lazy" />
+                            </div>
+                        `;
+                    });
+
+                    // Build tags
+                    let tagsHTML = '';
+                    project.tags.forEach(function(tag) {
+                        tagsHTML += `<span>${tag}</span>`;
+                    });
+
+                    card.innerHTML = `
+                        <div class="project-slider" data-slider="${index}">
+                            <div class="slides">${slidesHTML}</div>
+                            <button class="slider-btn prev" aria-label="قبلی"><i class="fas fa-chevron-right"></i></button>
+                            <button class="slider-btn next" aria-label="بعدی"><i class="fas fa-chevron-left"></i></button>
+                            <div class="dots"></div>
+                        </div>
+                        <div class="card-body">
+                            <h3>${project.title}</h3>
+                            <p>${project.desc}</p>
+                            <div class="project-tags">${tagsHTML}</div>
+                            <a href="#" class="card-link">
+                                <span>${ctaText}</span>
+                                <i class="fas fa-arrow-left"></i>
+                            </a>
+                        </div>
+                    `;
+
+                    grid.appendChild(card);
+                });
+
+                // Re-init image loading + sliders
+                initImageLoading();
+                initProjectSliders();
+                observeNewElements();
+            }
+
+            // ── i18n ──
             function setLanguage(lang) {
                 currentLang = lang;
 
@@ -2011,18 +1697,14 @@
                 dropdownMenu.classList.remove('open');
                 dropdownBtn.classList.remove('active');
 
-                const translatable = document.querySelectorAll('[data-i18n]');
-                translatable.forEach(function(el) {
+                // Translate static elements
+                document.querySelectorAll('[data-i18n]').forEach(function(el) {
                     const key = el.getAttribute('data-i18n');
                     const keys = key.split('.');
                     let value = translations[lang];
                     for (let k of keys) {
-                        if (value && value[k] !== undefined) {
-                            value = value[k];
-                        } else {
-                            value = null;
-                            break;
-                        }
+                        if (value && value[k] !== undefined) value = value[k];
+                        else { value = null; break; }
                     }
                     if (value !== null && value !== undefined) {
                         if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
@@ -2032,15 +1714,16 @@
                         }
                     }
                 });
+
+                // Render projects from JSON
+                renderProjects(lang);
             }
 
             document.querySelectorAll('.lang-dropdown-menu button').forEach(function(btn) {
                 btn.addEventListener('click', function(e) {
                     e.stopPropagation();
                     const lang = this.getAttribute('data-lang');
-                    if (lang !== currentLang) {
-                        setLanguage(lang);
-                    }
+                    if (lang !== currentLang) setLanguage(lang);
                 });
             });
 
@@ -2061,7 +1744,7 @@
                 navLinks.forEach(function(link) {
                     link.style.color = '';
                     if (link.getAttribute('href') === '#' + current) {
-                        link.style.color = '#8A6FFF';
+                        link.style.color = 'var(--accent)';
                     }
                 });
             });
@@ -2085,157 +1768,133 @@
             });
 
             // ── Image Loading ──
-            document.querySelectorAll('.slide-image img').forEach(function(img) {
-                if (img.complete) {
-                    img.classList.add('loaded');
-                } else {
-                    img.addEventListener('load', function() {
-                        this.classList.add('loaded');
-                    });
-                    img.addEventListener('error', function() {
-                        this.classList.add('loaded');
-                    });
-                }
-            });
+            function initImageLoading() {
+                document.querySelectorAll('.slide-image img').forEach(function(img) {
+                    if (img.complete) {
+                        img.classList.add('loaded');
+                    } else {
+                        img.addEventListener('load', function() { this.classList.add('loaded'); });
+                        img.addEventListener('error', function() { this.classList.add('loaded'); });
+                    }
+                });
+            }
 
             // ── Project Sliders ──
-            const sliders = document.querySelectorAll('.project-slider');
+            function initProjectSliders() {
+                document.querySelectorAll('.project-slider').forEach(function(slider) {
+                    const slidesContainer = slider.querySelector('.slides');
+                    const slideImages = slidesContainer.querySelectorAll('.slide-image');
+                    const total = slideImages.length;
+                    let currentIndex = 0;
 
-            sliders.forEach(function(slider) {
-                const slidesContainer = slider.querySelector('.slides');
-                const slideImages = slidesContainer.querySelectorAll('.slide-image');
-                const total = slideImages.length;
-                let currentIndex = 0;
-
-                const dotsContainer = slider.querySelector('.dots');
-                dotsContainer.innerHTML = '';
-                for (let i = 0; i < total; i++) {
-                    const dot = document.createElement('button');
-                    dot.classList.add('dot');
-                    if (i === 0) dot.classList.add('active');
-                    dot.setAttribute('data-index', i);
-                    dot.addEventListener('click', function() {
-                        goTo(parseInt(this.getAttribute('data-index')));
-                    });
-                    dotsContainer.appendChild(dot);
-                }
-
-                const dots = dotsContainer.querySelectorAll('.dot');
-
-                function goTo(index) {
-                    if (index < 0) index = total - 1;
-                    if (index >= total) index = 0;
-                    currentIndex = index;
-                    slidesContainer.style.transform = 'translateX(' + (-currentIndex * 100) + '%)';
-                    dots.forEach(function(d, i) {
-                        d.classList.toggle('active', i === currentIndex);
-                    });
-                }
-
-                const prevBtn = slider.querySelector('.prev');
-                const nextBtn = slider.querySelector('.next');
-
-                prevBtn.addEventListener('click', function(e) {
-                    e.stopPropagation();
-                    goTo(currentIndex - 1);
-                });
-
-                nextBtn.addEventListener('click', function(e) {
-                    e.stopPropagation();
-                    goTo(currentIndex + 1);
-                });
-
-                let touchStartX = 0;
-                let touchEndX = 0;
-
-                slider.addEventListener('touchstart', function(e) {
-                    touchStartX = e.changedTouches[0].screenX;
-                }, { passive: true });
-
-                slider.addEventListener('touchend', function(e) {
-                    touchEndX = e.changedTouches[0].screenX;
-                    const diff = touchStartX - touchEndX;
-                    if (Math.abs(diff) > 40) {
-                        if (diff > 0) {
-                            goTo(currentIndex + 1);
-                        } else {
-                            goTo(currentIndex - 1);
-                        }
+                    const dotsContainer = slider.querySelector('.dots');
+                    dotsContainer.innerHTML = '';
+                    for (let i = 0; i < total; i++) {
+                        const dot = document.createElement('button');
+                        dot.classList.add('dot');
+                        if (i === 0) dot.classList.add('active');
+                        dot.setAttribute('data-index', i);
+                        dot.addEventListener('click', function() {
+                            goTo(parseInt(this.getAttribute('data-index')));
+                        });
+                        dotsContainer.appendChild(dot);
                     }
-                }, { passive: true });
 
-                let autoPlay = setInterval(function() {
-                    goTo(currentIndex + 1);
-                }, 4000);
+                    const dots = dotsContainer.querySelectorAll('.dot');
 
-                slider.addEventListener('mouseenter', function() {
-                    clearInterval(autoPlay);
-                });
+                    function goTo(index) {
+                        if (index < 0) index = total - 1;
+                        if (index >= total) index = 0;
+                        currentIndex = index;
+                        slidesContainer.style.transform = 'translateX(' + (-currentIndex * 100) + '%)';
+                        dots.forEach(function(d, i) {
+                            d.classList.toggle('active', i === currentIndex);
+                        });
+                    }
 
-                slider.addEventListener('mouseleave', function() {
-                    clearInterval(autoPlay);
-                    autoPlay = setInterval(function() {
+                    const prevBtn = slider.querySelector('.prev');
+                    const nextBtn = slider.querySelector('.next');
+
+                    prevBtn.addEventListener('click', function(e) {
+                        e.stopPropagation();
+                        goTo(currentIndex - 1);
+                    });
+                    nextBtn.addEventListener('click', function(e) {
+                        e.stopPropagation();
                         goTo(currentIndex + 1);
-                    }, 4000);
+                    });
+
+                    let touchStartX = 0;
+                    let touchEndX = 0;
+
+                    slider.addEventListener('touchstart', function(e) {
+                        touchStartX = e.changedTouches[0].screenX;
+                    }, { passive: true });
+
+                    slider.addEventListener('touchend', function(e) {
+                        touchEndX = e.changedTouches[0].screenX;
+                        const diff = touchStartX - touchEndX;
+                        if (Math.abs(diff) > 40) {
+                            if (diff > 0) goTo(currentIndex + 1);
+                            else goTo(currentIndex - 1);
+                        }
+                    }, { passive: true });
+
+                    let autoPlay = setInterval(function() { goTo(currentIndex + 1); }, 4000);
+                    slider.addEventListener('mouseenter', function() { clearInterval(autoPlay); });
+                    slider.addEventListener('mouseleave', function() {
+                        clearInterval(autoPlay);
+                        autoPlay = setInterval(function() { goTo(currentIndex + 1); }, 4000);
+                    });
                 });
-            });
+            }
 
             // ── Scroll Animation Observer ──
-            const animateElements = document.querySelectorAll('.animate-on-scroll');
-
             const observer = new IntersectionObserver(function(entries) {
                 entries.forEach(function(entry) {
                     if (entry.isIntersecting) {
                         entry.target.classList.add('visible');
                     }
                 });
-            }, {
-                threshold: 0.15,
-                rootMargin: '0px 0px -30px 0px'
-            });
+            }, { threshold: 0.15, rootMargin: '0px 0px -30px 0px' });
 
-            animateElements.forEach(function(el) {
+            function observeNewElements() {
+                document.querySelectorAll('.animate-on-scroll').forEach(function(el) {
+                    observer.observe(el);
+                });
+            }
+
+            // Initial observe
+            document.querySelectorAll('.animate-on-scroll').forEach(function(el) {
                 observer.observe(el);
             });
 
-            // ── Skill Level Bars Animation ──
+            // ── Skill Bars ──
             const skillBars = document.querySelectorAll('.skill-bar-fill');
-
             const barObserver = new IntersectionObserver(function(entries) {
                 entries.forEach(function(entry) {
                     if (entry.isIntersecting) {
                         const bar = entry.target;
                         const width = bar.getAttribute('data-width');
-                        setTimeout(function() {
-                            bar.style.width = width + '%';
-                        }, 300);
+                        setTimeout(function() { bar.style.width = width + '%'; }, 300);
                     }
                 });
-            }, {
-                threshold: 0.3
-            });
+            }, { threshold: 0.3 });
 
-            skillBars.forEach(function(bar) {
-                barObserver.observe(bar);
-            });
+            skillBars.forEach(function(bar) { barObserver.observe(bar); });
 
-            // ── Stat Counter Animation ──
+            // ── Stat Counter ──
             const statNumbers = document.querySelectorAll('.stat-card .number[data-count]');
-
             const statObserver = new IntersectionObserver(function(entries) {
                 entries.forEach(function(entry) {
                     if (entry.isIntersecting) {
                         const el = entry.target;
                         const target = parseInt(el.getAttribute('data-count'));
-                        if (!isNaN(target)) {
-                            animateCounterSlow(el, target);
-                        }
+                        if (!isNaN(target)) animateCounterSlow(el, target);
                         statObserver.unobserve(el);
                     }
                 });
-            }, {
-                threshold: 0.5
-            });
+            }, { threshold: 0.5 });
 
             function animateCounterSlow(el, target) {
                 let current = 0;
@@ -2254,11 +1913,9 @@
                 }, stepTime);
             }
 
-            statNumbers.forEach(function(el) {
-                statObserver.observe(el);
-            });
+            statNumbers.forEach(function(el) { statObserver.observe(el); });
 
-            // Set initial language
+            // Set initial language (renders projects)
             setLanguage('fa');
 
         })();
