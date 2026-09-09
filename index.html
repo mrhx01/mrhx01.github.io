@@ -212,7 +212,7 @@
             margin: 0 auto 20px;
         }
 
-        /* ─── Navigation (Improved) ─── */
+        /* ─── Navigation ─── */
         nav {
             display: flex;
             justify-content: space-between;
@@ -228,11 +228,11 @@
             transition: all 0.3s ease;
         }
 
-        /* Left side: Logo + Language Switcher */
+        /* Left side: Logo + Language + Theme */
         .nav-left {
             display: flex;
             align-items: center;
-            gap: 14px;
+            gap: 12px;
         }
 
         .logo {
@@ -248,7 +248,7 @@
             text-shadow: 0 0 30px var(--accent-glow);
         }
 
-        /* ─── Language Switcher (Dropdown) ─── */
+        /* ─── Language Switcher ─── */
         .lang-dropdown {
             position: relative;
             display: inline-block;
@@ -345,14 +345,7 @@
             font-size: 1.1rem;
         }
 
-        /* ─── Right side: Menu + Dark Mode ─── */
-        .nav-right {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-
-        /* ─── Dark Mode Toggle ─── */
+        /* ─── Dark Mode Toggle (now next to Language) ─── */
         .theme-toggle {
             background: var(--bg-card);
             border: 1px solid var(--border);
@@ -388,6 +381,13 @@
         }
         [data-theme="light"] .theme-toggle .fa-moon {
             display: none;
+        }
+
+        /* ─── Right side: Menu ─── */
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 12px;
         }
 
         .hamburger {
@@ -510,8 +510,7 @@
         }
 
         @keyframes pulse-dot {
-            0%,
-            100% {
+            0%, 100% {
                 opacity: 1;
                 transform: scale(1);
                 box-shadow: 0 0 20px var(--accent-glow);
@@ -642,28 +641,15 @@
 
         /* ─── Animations ─── */
         @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         @keyframes fadeInDown {
-            from {
-                opacity: 0;
-                transform: translateY(-20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
-        /* Scroll animation classes */
         .animate-on-scroll {
             opacity: 0;
             transition: opacity 0.7s ease, transform 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
@@ -673,33 +659,17 @@
             opacity: 1;
         }
 
-        .animate-on-scroll.fade-up {
-            transform: translateY(40px);
-        }
-        .animate-on-scroll.fade-up.visible {
-            transform: translateY(0);
-        }
+        .animate-on-scroll.fade-up { transform: translateY(40px); }
+        .animate-on-scroll.fade-up.visible { transform: translateY(0); }
 
-        .animate-on-scroll.fade-left {
-            transform: translateX(-40px);
-        }
-        .animate-on-scroll.fade-left.visible {
-            transform: translateX(0);
-        }
+        .animate-on-scroll.fade-left { transform: translateX(-40px); }
+        .animate-on-scroll.fade-left.visible { transform: translateX(0); }
 
-        .animate-on-scroll.fade-right {
-            transform: translateX(40px);
-        }
-        .animate-on-scroll.fade-right.visible {
-            transform: translateX(0);
-        }
+        .animate-on-scroll.fade-right { transform: translateX(40px); }
+        .animate-on-scroll.fade-right.visible { transform: translateX(0); }
 
-        .animate-on-scroll.scale-in {
-            transform: scale(0.92);
-        }
-        .animate-on-scroll.scale-in.visible {
-            transform: scale(1);
-        }
+        .animate-on-scroll.scale-in { transform: scale(0.92); }
+        .animate-on-scroll.scale-in.visible { transform: scale(1); }
 
         .stagger-children > * {
             transition-delay: calc(0.07s * var(--i, 0));
@@ -720,7 +690,6 @@
             color: var(--text-dim);
             margin-bottom: 16px;
             font-size: 1.02rem;
-            transition: color 0.4s ease;
         }
         .about-text p:last-child {
             margin-bottom: 0;
@@ -733,7 +702,6 @@
             padding-right: 20px;
             margin: 20px 0 0;
             text-align: right;
-            text-shadow: 0 0 30px rgba(138, 111, 255, 0.1);
         }
         body[dir="ltr"] .about-text blockquote {
             border-right: none;
@@ -755,8 +723,6 @@
             padding: 24px 20px;
             text-align: center;
             transition: all var(--transition);
-            position: relative;
-            overflow: hidden;
         }
         .stat-card:hover {
             background: var(--bg-card-hover);
@@ -1123,7 +1089,7 @@
         }
 
         /* ══════════════════════════════════════
-           RESPONSIVE - MOBILE OPTIMIZED
+           RESPONSIVE
         ══════════════════════════════════════ */
         @media (max-width: 768px) {
             body {
@@ -1134,14 +1100,13 @@
                 padding: 12px 0 40px;
             }
 
-            /* ── Improved Mobile Header ── */
             nav {
                 padding: 12px 0;
                 gap: 8px;
             }
 
             .nav-left {
-                gap: 10px;
+                gap: 8px;
             }
 
             .logo {
@@ -1204,7 +1169,6 @@
                 display: block;
                 padding: 14px 20px;
                 font-size: 1.05rem;
-                border-radius: 0;
             }
 
             .nav-links a:hover {
@@ -1225,7 +1189,6 @@
                 left: auto;
             }
 
-            /* Hero */
             .hero {
                 padding: 36px 0 30px;
                 gap: 22px;
@@ -1357,11 +1320,11 @@
 
         <!-- Nav -->
         <nav>
-            <!-- Left: Logo + Language Dropdown -->
+            <!-- Left: Logo + Language + Theme Toggle (now together) -->
             <div class="nav-left">
                 <div class="logo">MRHX01</div>
 
-                <!-- Language Switcher Dropdown -->
+                <!-- Language Switcher -->
                 <div class="lang-dropdown">
                     <button class="lang-dropdown-btn" id="langDropdownBtn" aria-label="انتخاب زبان">
                         <span class="flag">🇮🇷</span>
@@ -1377,15 +1340,16 @@
                         </button>
                     </div>
                 </div>
-            </div>
 
-            <!-- Right: Menu + Dark Mode Toggle -->
-            <div class="nav-right">
+                <!-- Dark / Light Mode Toggle (moved here) -->
                 <button class="theme-toggle" id="themeToggle" aria-label="تغییر تم">
                     <i class="fas fa-moon"></i>
                     <i class="fas fa-sun"></i>
                 </button>
+            </div>
 
+            <!-- Right: Hamburger + Menu -->
+            <div class="nav-right">
                 <button class="hamburger" id="hamburger" aria-label="منو" aria-expanded="false">
                     <span></span>
                     <span></span>
@@ -1798,7 +1762,6 @@
         (function() {
             'use strict';
 
-            // ── Translation Data ──
             const translations = {
                 fa: {
                     loading: 'در حال بارگذاری منابع',
