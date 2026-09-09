@@ -64,7 +64,7 @@
             --lightbox-text: #fff;
         }
 
-        /* ── Preloader (transparent) ── */
+        /* ── Preloader ── */
         #preloader {
             position: fixed;
             inset: 0;
@@ -457,15 +457,8 @@
             box-shadow: 0 0 20px var(--accent-glow);
         }
         @keyframes pulse-dot {
-            0%,
-            100% {
-                opacity: 1;
-                transform: scale(1);
-            }
-            50% {
-                opacity: 0.5;
-                transform: scale(0.85);
-            }
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.5; transform: scale(0.85); }
         }
 
         .hero h1 {
@@ -582,24 +575,12 @@
         }
 
         @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
         }
         @keyframes fadeInDown {
-            from {
-                opacity: 0;
-                transform: translateY(-20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         .animate-on-scroll {
@@ -633,7 +614,7 @@
         .animate-on-scroll.scale-in.visible {
             transform: scale(1);
         }
-        .stagger-children>* {
+        .stagger-children > * {
             transition-delay: calc(0.07s * var(--i, 0));
         }
 
@@ -1178,35 +1159,18 @@
 
         /* ── Responsive ── */
         @media (max-width: 768px) {
-            body {
-                padding: 0 16px;
-            }
-            .container {
-                padding: 12px 0 40px;
-            }
-            nav {
-                padding: 12px 0;
-                gap: 8px;
-            }
-            .nav-left {
-                gap: 8px;
-            }
-            .logo {
-                font-size: 1.15rem;
-            }
+            body { padding: 0 16px; }
+            .container { padding: 12px 0 40px; }
+            nav { padding: 12px 0; gap: 8px; }
+            .nav-left { gap: 8px; }
+            .logo { font-size: 1.15rem; }
             .lang-dropdown-btn {
                 padding: 6px 11px;
                 font-size: 0.75rem;
                 min-width: 68px;
             }
-            .theme-toggle {
-                width: 38px;
-                height: 38px;
-                font-size: 1rem;
-            }
-            .hamburger {
-                display: flex;
-            }
+            .theme-toggle { width: 38px; height: 38px; font-size: 1rem; }
+            .hamburger { display: flex; }
             .nav-links {
                 position: absolute;
                 top: 100%;
@@ -1236,10 +1200,7 @@
                 visibility: visible;
                 padding: 12px 0 16px;
             }
-            .nav-links li {
-                width: 100%;
-                text-align: center;
-            }
+            .nav-links li { width: 100%; text-align: center; }
             .nav-links a {
                 display: block;
                 padding: 14px 20px;
@@ -1249,36 +1210,19 @@
                 background: var(--bg-card);
                 color: var(--text);
             }
-            .nav-links a::after {
-                display: none;
-            }
-            .lang-dropdown-menu {
-                right: auto;
-                left: 0;
-            }
-            body[dir="ltr"] .lang-dropdown-menu {
-                right: 0;
-                left: auto;
-            }
-            .hero {
-                padding: 36px 0 30px;
-                gap: 22px;
-            }
-            .hero h1 {
-                font-size: clamp(1.9rem, 9vw, 2.8rem);
-            }
-            .hero p {
-                font-size: 1.02rem;
-            }
+            .nav-links a::after { display: none; }
+            .lang-dropdown-menu { right: auto; left: 0; }
+            body[dir="ltr"] .lang-dropdown-menu { right: 0; left: auto; }
+            .hero { padding: 36px 0 30px; gap: 22px; }
+            .hero h1 { font-size: clamp(1.9rem, 9vw, 2.8rem); }
+            .hero p { font-size: 1.02rem; }
             .about-grid,
             .contact-wrap {
                 grid-template-columns: 1fr;
                 gap: 28px;
                 text-align: center;
             }
-            .about-grid .about-text {
-                text-align: center;
-            }
+            .about-grid .about-text { text-align: center; }
             .about-text blockquote {
                 text-align: center;
                 border-right: none !important;
@@ -1286,44 +1230,24 @@
                 padding-right: 0 !important;
                 padding-left: 0 !important;
             }
-            .stat-cards {
-                grid-template-columns: 1fr 1fr;
-            }
-            .projects-grid {
-                grid-template-columns: 1fr;
-            }
-            .skills-grid {
-                grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-            }
+            .stat-cards { grid-template-columns: 1fr 1fr; }
+            .projects-grid { grid-template-columns: 1fr; }
+            .skills-grid { grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); }
             footer {
                 flex-direction: column;
                 text-align: center;
                 gap: 12px;
             }
-            .contact-item {
-                justify-content: center;
-            }
-            .contact-info p {
-                text-align: center;
-            }
+            .contact-item { justify-content: center; }
+            .contact-info p { text-align: center; }
             .lightbox-overlay .lb-nav {
                 font-size: 1.4rem;
                 padding: 12px 8px;
             }
-            .lightbox-overlay .lb-nav.prev {
-                right: 6px;
-            }
-            .lightbox-overlay .lb-nav.next {
-                left: 6px;
-            }
-            body[dir="ltr"] .lightbox-overlay .lb-nav.prev {
-                right: auto;
-                left: 6px;
-            }
-            body[dir="ltr"] .lightbox-overlay .lb-nav.next {
-                left: auto;
-                right: 6px;
-            }
+            .lightbox-overlay .lb-nav.prev { right: 6px; }
+            .lightbox-overlay .lb-nav.next { left: 6px; }
+            body[dir="ltr"] .lightbox-overlay .lb-nav.prev { right: auto; left: 6px; }
+            body[dir="ltr"] .lightbox-overlay .lb-nav.next { left: auto; right: 6px; }
             .lightbox-overlay .lb-image-wrap img {
                 max-width: 98vw;
                 max-height: 80vh;
@@ -1340,27 +1264,16 @@
         }
 
         @media (max-width: 480px) {
-            body {
-                padding: 0 14px;
-            }
-            .logo {
-                font-size: 1.05rem;
-            }
+            body { padding: 0 14px; }
+            .logo { font-size: 1.05rem; }
             .lang-dropdown-btn {
                 padding: 5px 10px;
                 font-size: 0.7rem;
                 min-width: 60px;
                 gap: 5px;
             }
-            .theme-toggle {
-                width: 36px;
-                height: 36px;
-                font-size: 0.95rem;
-            }
-            .hamburger {
-                width: 24px;
-                height: 16px;
-            }
+            .theme-toggle { width: 36px; height: 36px; font-size: 0.95rem; }
+            .hamburger { width: 24px; height: 16px; }
             .hamburger.active span:nth-child(1) {
                 transform: translateY(7px) rotate(45deg);
             }
@@ -1375,9 +1288,7 @@
                 justify-content: center;
                 width: 100%;
             }
-            .stat-cards {
-                grid-template-columns: 1fr;
-            }
+            .stat-cards { grid-template-columns: 1fr; }
             .skills-grid {
                 grid-template-columns: 1fr 1fr;
                 gap: 12px;
@@ -1387,15 +1298,13 @@
                 height: 28px;
                 font-size: 0.75rem;
             }
-            .loader-track {
-                width: 180px;
-            }
+            .loader-track { width: 180px; }
         }
     </style>
 </head>
 <body>
 
-    <!-- ─── Preloader (transparent) ─── -->
+    <!-- ─── Preloader ─── -->
     <div id="preloader">
         <div class="loader-label" data-i18n="loading">در حال بارگذاری منابع</div>
         <div class="loader-percent" id="loaderPercent">0%</div>
@@ -1412,7 +1321,7 @@
                 <div class="logo">MRHX01</div>
 
                 <div class="lang-dropdown">
-                    <button class="lang-dropdown-btn" id="langDropdownBtn" aria-label="انتخاب زبان">
+                    <button class="lang-dropdown-btn" id="langDropdownBtn" aria-label="Select language">
                         <span class="flag">🇮🇷</span>
                         <span id="currentLangLabel">فارسی</span>
                         <span class="arrow"><i class="fas fa-chevron-down"></i></span>
@@ -1427,14 +1336,14 @@
                     </div>
                 </div>
 
-                <button class="theme-toggle" id="themeToggle" aria-label="تغییر تم">
+                <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
                     <i class="fas fa-moon"></i>
                     <i class="fas fa-sun"></i>
                 </button>
             </div>
 
             <div class="nav-right">
-                <button class="hamburger" id="hamburger" aria-label="منو" aria-expanded="false">
+                <button class="hamburger" id="hamburger" aria-label="Menu" aria-expanded="false">
                     <span></span>
                     <span></span>
                     <span></span>
@@ -1669,7 +1578,7 @@
         <!-- ─── Footer ─── -->
         <footer>
             <span>
-                &copy; ۲۰۲۵
+                &copy; 2025
                 <span data-i18n="footer.made">روح‌اله حسینی. ساخته شده با</span>
                 <span class="heart">♥</span>
                 <span data-i18n="footer.on">روی GitHub Pages.</span>
@@ -1683,11 +1592,11 @@
 
     </div>
 
-    <!-- ─── Lightbox DOM ─── -->
+    <!-- ─── Lightbox ─── -->
     <div class="lightbox-overlay" id="lightboxOverlay">
-        <button class="lb-close" id="lbClose" aria-label="بستن"><i class="fas fa-times"></i></button>
-        <button class="lb-nav prev" id="lbPrev" aria-label="قبلی"><i class="fas fa-chevron-right"></i></button>
-        <button class="lb-nav next" id="lbNext" aria-label="بعدی"><i class="fas fa-chevron-left"></i></button>
+        <button class="lb-close" id="lbClose" aria-label="Close"><i class="fas fa-times"></i></button>
+        <button class="lb-nav prev" id="lbPrev" aria-label="Previous"><i class="fas fa-chevron-right"></i></button>
+        <button class="lb-nav next" id="lbNext" aria-label="Next"><i class="fas fa-chevron-left"></i></button>
         <div class="lb-image-wrap" id="lbImageWrap">
             <img id="lbImage" src="" alt="" />
             <div class="lb-zoom-hint" id="lbZoomHint">🔍 scroll to zoom · click to toggle</div>
@@ -1744,46 +1653,33 @@
                     projects: {
                         label: 'نمونه کارها',
                         title: 'آخرین پروژه‌ها',
-                        items: [{
-                            title: 'طراحی و راه‌اندازی کامل سایت فروشگاهی فروش سرورهای ابری',
-                            desc: 'طراحی و توسعه پلتفرم فروش سرورهای ابری با معماری Full-Stack مبتنی بر Django، Django REST Framework و React. این سامانه شامل APIهای اختصاصی، پردازش خودکار سفارشات، اتصال به پروایدرهای بین‌المللی، درگاه پرداخت ایرانی، مدیریت کاربران و امکان خرید سرورهای ساعتی و ماهانه است.',
-                            tags: ['Python', 'Django', 'DRF', 'React'],
-                            images: [
-                                './images/1-1.png',
-                                './images/1-2.png'
-                            ]
-                        }, {
-                            title: 'طراحی فرانت و بک‌اند و راه‌اندازی سایت فروشگاهی اشتراک پریمیوم',
-                            desc: 'توسعه کامل فرانت‌اند و بک‌اند سامانه فروش اشتراک‌های پریمیوم با Django و Bootstrap، شامل معماری ماژولار، مدیریت کاربران و سفارشات، درگاه پرداخت، پنل مدیریتی و سیستم تحویل خودکار محصولات دیجیتال.',
-                            tags: ['Python', 'Django', 'HTML5', 'CSS3', 'Bootstrap'],
-                            images: [
-                                './images/2-1.jpg',
-                                './images/2-2.jpg'
-                            ]
-                        }, {
-                            title: 'طراحی سایت و اپلیکیشن مدیریت حساب کاربری',
-                            desc: 'توسعه سامانه مدیریت سرور و کاربران با ASP.NET Core Web API، Next.js و Android شامل پنل مدیریتی، ساخت خودکار اکانت، اتصال به پنل‌های شبکه، API اختصاصی و اپلیکیشن مدیریت و اتصال به سرورها.',
-                            tags: ['C#', 'ASP.NET Web API', 'Nextjs','Android'],
-                            images: [
-                                './images/3-1.jpg',
-                                './images/3-2.jpg',
-                                './images/3-3.jpg'
-                            ]
-                        },
-                        {
-                            title: 'ربات تلگرامی فروشگاهی همراه با پنل مدیریتی',
-                            desc: 'توسعه ربات فروشگاهی تلگرام مبتنی بر Python و Django با معماری ماژولار، پنل مدیریت پیشرفته، مدیریت محصولات و کاربران، سیستم ارسال پیام همگانی، ثبت و مانیتورینگ خطاها، تنظیمات پویا برای دکمه‌ها و پیام‌ها، و امکانات شخصی‌سازی و نگهداری سرویس.',
-                            tags: ['Python', 'Django', 'Telegram Bot'],
-                            images: [
-                                './images/4-1.png',
-                                './images/4-2.png',
-                                './images/4-3.png',
-                                './images/4-4.png',
-                            ]
-                        }
-                    
-                    
-                    ]
+                        hint: 'تصویر · کلیک کنید',
+                        items: [
+                            {
+                                title: 'طراحی و راه‌اندازی کامل سایت فروشگاهی فروش سرورهای ابری',
+                                desc: 'طراحی و توسعه پلتفرم فروش سرورهای ابری با معماری Full-Stack مبتنی بر Django، Django REST Framework و React. این سامانه شامل APIهای اختصاصی، پردازش خودکار سفارشات، اتصال به پروایدرهای بین‌المللی، درگاه پرداخت ایرانی، مدیریت کاربران و امکان خرید سرورهای ساعتی و ماهانه است.',
+                                tags: ['Python', 'Django', 'DRF', 'React'],
+                                images: ['./images/1-1.png', './images/1-2.png']
+                            },
+                            {
+                                title: 'طراحی فرانت و بک‌اند و راه‌اندازی سایت فروشگاهی اشتراک پریمیوم',
+                                desc: 'توسعه کامل فرانت‌اند و بک‌اند سامانه فروش اشتراک‌های پریمیوم با Django و Bootstrap، شامل معماری ماژولار، مدیریت کاربران و سفارشات، درگاه پرداخت، پنل مدیریتی و سیستم تحویل خودکار محصولات دیجیتال.',
+                                tags: ['Python', 'Django', 'HTML5', 'CSS3', 'Bootstrap'],
+                                images: ['./images/2-1.jpg', './images/2-2.jpg']
+                            },
+                            {
+                                title: 'طراحی سایت و اپلیکیشن مدیریت حساب کاربری',
+                                desc: 'توسعه سامانه مدیریت سرور و کاربران با ASP.NET Core Web API، Next.js و Android شامل پنل مدیریتی، ساخت خودکار اکانت، اتصال به پنل‌های شبکه، API اختصاصی و اپلیکیشن مدیریت و اتصال به سرورها.',
+                                tags: ['C#', 'ASP.NET Web API', 'Next.js', 'Android'],
+                                images: ['./images/3-1.jpg', './images/3-2.jpg', './images/3-3.jpg']
+                            },
+                            {
+                                title: 'ربات تلگرامی فروشگاهی همراه با پنل مدیریتی',
+                                desc: 'توسعه ربات فروشگاهی تلگرام مبتنی بر Python و Django با معماری ماژولار، پنل مدیریت پیشرفته، مدیریت محصولات و کاربران، سیستم ارسال پیام همگانی، ثبت و مانیتورینگ خطاها، تنظیمات پویا برای دکمه‌ها و پیام‌ها، و امکانات شخصی‌سازی و نگهداری سرویس.',
+                                tags: ['Python', 'Django', 'Telegram Bot'],
+                                images: ['./images/4-1.png', './images/4-2.png', './images/4-3.png', './images/4-4.png']
+                            }
+                        ]
                     },
                     contact: {
                         label: 'ارتباط با من',
@@ -1838,32 +1734,33 @@
                     projects: {
                         label: 'Portfolio',
                         title: 'Latest Projects',
-                        items: [{
-                            title: 'Full E-Commerce Platform for Cloud Servers',
-                            desc: 'Full-Stack platform built with Django, DRF, and React for selling cloud servers. Includes custom APIs, automated order processing, international provider integration, Iranian payment gateway, user management, and hourly/monthly server purchases.',
-                            tags: ['Python', 'Django', 'DRF', 'React'],
-                            images: [
-                                './images/1-1.png',
-                                './images/1-2.png'
-                            ]
-                        }, {
-                            title: 'Frontend & Backend for Premium Subscription Store',
-                            desc: 'Full-stack development of a premium subscription store using Django and Bootstrap. Modular architecture, user & order management, payment gateway, admin panel, and automated digital product delivery.',
-                            tags: ['Python', 'Django', 'HTML5', 'CSS3', 'Bootstrap'],
-                            images: [
-                                './images/2-1.jpg',
-                                './images/2-2.jpg'
-                            ]
-                        }, {
-                            title: 'Advanced Admin Panel',
-                            desc: 'Analytical dashboard with real-time data visualization, interactive charts, and multi-level authentication system for large organizations.',
-                            tags: ['C#', 'ASP.NET Web API', 'Bootstrap'],
-                            images: [
-                                'https://picsum.photos/seed/dash1/800/500',
-                                'https://picsum.photos/seed/dash2/800/500',
-                                'https://picsum.photos/seed/dash3/800/500'
-                            ]
-                        }]
+                        hint: 'images · click',
+                        items: [
+                            {
+                                title: 'Full E-Commerce Platform for Cloud Servers',
+                                desc: 'Full-Stack platform built with Django, DRF, and React for selling cloud servers. Includes custom APIs, automated order processing, international provider integration, Iranian payment gateway, user management, and hourly/monthly server purchases.',
+                                tags: ['Python', 'Django', 'DRF', 'React'],
+                                images: ['./images/1-1.png', './images/1-2.png']
+                            },
+                            {
+                                title: 'Frontend & Backend for Premium Subscription Store',
+                                desc: 'Full-stack development of a premium subscription store using Django and Bootstrap. Modular architecture, user & order management, payment gateway, admin panel, and automated digital product delivery.',
+                                tags: ['Python', 'Django', 'HTML5', 'CSS3', 'Bootstrap'],
+                                images: ['./images/2-1.jpg', './images/2-2.jpg']
+                            },
+                            {
+                                title: 'User Account Management Website & App',
+                                desc: 'Server and user management system built with ASP.NET Core Web API, Next.js and Android. Includes admin panel, automatic account creation, network panel integration, custom API, and mobile app for management and server connection.',
+                                tags: ['C#', 'ASP.NET Web API', 'Next.js', 'Android'],
+                                images: ['./images/3-1.jpg', './images/3-2.jpg', './images/3-3.jpg']
+                            },
+                            {
+                                title: 'Telegram Shop Bot with Admin Panel',
+                                desc: 'Telegram shop bot based on Python and Django with modular architecture, advanced admin panel, product & user management, broadcast messaging, error logging & monitoring, dynamic button/message settings, and service customization & maintenance features.',
+                                tags: ['Python', 'Django', 'Telegram Bot'],
+                                images: ['./images/4-1.png', './images/4-2.png', './images/4-3.png', './images/4-4.png']
+                            }
+                        ]
                     },
                     contact: {
                         label: 'Contact',
@@ -1892,7 +1789,7 @@
             const urlLang = getLangFromURL();
             if (urlLang) currentLang = urlLang;
 
-            // ─── Preloader (fixed: immediate progress update) ───
+            // ─── Preloader ───
             const preloader = document.getElementById('preloader');
             const percentEl = document.getElementById('loaderPercent');
             const barEl = document.getElementById('loaderBar');
@@ -1925,8 +1822,10 @@
             }
 
             function finishLoading() {
-                if (interval) { clearInterval(interval);
-                    interval = null; }
+                if (interval) {
+                    clearInterval(interval);
+                    interval = null;
+                }
                 progress = 100;
                 updateUI(100);
                 setTimeout(function() { preloader.classList.add('hidden'); }, 400);
@@ -2058,8 +1957,7 @@
             }
 
             function applyLightboxTransform() {
-                lbImage.style.transform = 'scale(' + lbScale + ') translate(' + lbTranslateX + 'px, ' + lbTranslateY +
-                    'px)';
+                lbImage.style.transform = 'scale(' + lbScale + ') translate(' + lbTranslateX + 'px, ' + lbTranslateY + 'px)';
             }
 
             // Lightbox event listeners
@@ -2067,12 +1965,18 @@
             lbOverlay.addEventListener('click', function(e) {
                 if (e.target === lbOverlay) closeLightbox();
             });
-            lbPrev.addEventListener('click', function(e) { e.stopPropagation();
-                goToLightbox(lbCurrentIndex - 1); });
-            lbNext.addEventListener('click', function(e) { e.stopPropagation();
-                goToLightbox(lbCurrentIndex + 1); });
-            lbImage.addEventListener('click', function(e) { e.stopPropagation();
-                toggleZoom(); });
+            lbPrev.addEventListener('click', function(e) {
+                e.stopPropagation();
+                goToLightbox(lbCurrentIndex - 1);
+            });
+            lbNext.addEventListener('click', function(e) {
+                e.stopPropagation();
+                goToLightbox(lbCurrentIndex + 1);
+            });
+            lbImage.addEventListener('click', function(e) {
+                e.stopPropagation();
+                toggleZoom();
+            });
 
             document.addEventListener('keydown', function(e) {
                 if (!lbOverlay.classList.contains('open')) return;
@@ -2122,10 +2026,8 @@
             });
 
             // touch events
-            let lbTouchStartX = 0,
-                lbTouchStartY = 0;
-            let lbTouchOrigX = 0,
-                lbTouchOrigY = 0;
+            let lbTouchStartX = 0, lbTouchStartY = 0;
+            let lbTouchOrigX = 0, lbTouchOrigY = 0;
             let lbTouchStartDist = 0;
             let lbTouchStartScale = 1;
 
@@ -2174,7 +2076,7 @@
                 }
             }, { passive: false });
 
-            lbImageWrap.addEventListener('touchend', function(e) {
+            lbImageWrap.addEventListener('touchend', function() {
                 isDragging = false;
                 if (lbScale <= 1.05) {
                     lbScale = 1;
@@ -2190,6 +2092,7 @@
             function renderProjects(lang) {
                 const grid = document.getElementById('projectsGrid');
                 const items = translations[lang].projects.items;
+                const hintText = translations[lang].projects.hint;
 
                 grid.innerHTML = '';
 
@@ -2201,11 +2104,11 @@
                     let slidesHTML = '';
                     project.images.forEach(function(imgSrc, i) {
                         slidesHTML += `
-                                <div class="slide-image" data-imgindex="${i}">
-                                    <img src="${imgSrc}" alt="${project.title} ${i+1}" loading="lazy" />
-                                    <div class="img-placeholder">📷</div>
-                                </div>
-                            `;
+                            <div class="slide-image" data-imgindex="${i}">
+                                <img src="${imgSrc}" alt="${project.title} ${i + 1}" loading="lazy" />
+                                <div class="img-placeholder">📷</div>
+                            </div>
+                        `;
                     });
 
                     let tagsHTML = '';
@@ -2213,23 +2116,26 @@
                         tagsHTML += `<span>${tag}</span>`;
                     });
 
+                    const prevLabel = lang === 'fa' ? 'قبلی' : 'Previous';
+                    const nextLabel = lang === 'fa' ? 'بعدی' : 'Next';
+
                     card.innerHTML = `
-                            <div class="project-slider" data-slider="${index}">
-                                <div class="slides">${slidesHTML}</div>
-                                <button class="slider-btn prev" aria-label="قبلی"><i class="fas fa-chevron-right"></i></button>
-                                <button class="slider-btn next" aria-label="بعدی"><i class="fas fa-chevron-left"></i></button>
-                                <div class="dots"></div>
+                        <div class="project-slider" data-slider="${index}">
+                            <div class="slides">${slidesHTML}</div>
+                            <button class="slider-btn prev" aria-label="${prevLabel}"><i class="fas fa-chevron-right"></i></button>
+                            <button class="slider-btn next" aria-label="${nextLabel}"><i class="fas fa-chevron-left"></i></button>
+                            <div class="dots"></div>
+                        </div>
+                        <div class="card-body">
+                            <h3>${project.title}</h3>
+                            <p>${project.desc}</p>
+                            <div class="project-tags">${tagsHTML}</div>
+                            <div class="gallery-hint">
+                                <i class="fas fa-images"></i>
+                                <span>${project.images.length} ${hintText}</span>
                             </div>
-                            <div class="card-body">
-                                <h3>${project.title}</h3>
-                                <p>${project.desc}</p>
-                                <div class="project-tags">${tagsHTML}</div>
-                                <div class="gallery-hint">
-                                    <i class="fas fa-images"></i>
-                                    <span>${project.images.length} ${lang === 'fa' ? 'تصویر' : 'images'} · کلیک کنید</span>
-                                </div>
-                            </div>
-                        `;
+                        </div>
+                    `;
 
                     grid.appendChild(card);
                 });
@@ -2242,12 +2148,12 @@
 
             // ─── Lightbox Triggers ───
             function initLightboxTriggers() {
-                document.querySelectorAll('.project-slider').forEach(function(slider, idx) {
+                document.querySelectorAll('.project-slider').forEach(function(slider) {
                     const slides = slider.querySelectorAll('.slide-image');
                     const images = [];
                     slides.forEach(function(slide) {
                         const img = slide.querySelector('img');
-                        if (img && img.src) images.push(img.src);
+                        if (img && img.getAttribute('src')) images.push(img.getAttribute('src'));
                     });
                     if (images.length === 0) return;
 
@@ -2280,16 +2186,19 @@
                 const match = transform.match(/translateX\(([^)]+)\)/);
                 if (!match) return 0;
                 const val = parseFloat(match[1]);
-                const idx = Math.round(Math.abs(val) / 100);
-                return idx;
+                return Math.round(Math.abs(val) / 100);
             }
 
-            // ─── Project Sliders (fixed: reset transform to 0) ───
+            // ─── Project Sliders ───
             function initProjectSliders() {
                 document.querySelectorAll('.project-slider').forEach(function(slider) {
                     const slidesContainer = slider.querySelector('.slides');
                     const slideImages = slidesContainer.querySelectorAll('.slide-image');
                     const total = slideImages.length;
+
+                    // Always reset to first slide
+                    slidesContainer.style.transform = 'translateX(0%)';
+
                     if (total <= 1) {
                         const btns = slider.querySelectorAll('.slider-btn');
                         btns.forEach(b => b.style.display = 'none');
@@ -2297,8 +2206,7 @@
                         if (dots) dots.style.display = 'none';
                         return;
                     }
-                    // Reset to first slide
-                    slidesContainer.style.transform = 'translateX(0%)';
+
                     let currentIndex = 0;
 
                     const dotsContainer = slider.querySelector('.dots');
@@ -2364,10 +2272,12 @@
             // ─── Image Loading ───
             function initImageLoading() {
                 document.querySelectorAll('.slide-image img').forEach(function(img) {
-                    if (img.complete) {
+                    if (img.complete && img.naturalWidth > 0) {
                         img.classList.add('loaded');
                     } else {
-                        img.addEventListener('load', function() { this.classList.add('loaded'); });
+                        img.addEventListener('load', function() {
+                            this.classList.add('loaded');
+                        });
                         img.addEventListener('error', function() {
                             this.classList.add('loaded');
                             const placeholder = this.closest('.slide-image').querySelector('.img-placeholder');
@@ -2391,6 +2301,8 @@
                 }
 
                 currentLangLabel.textContent = langNames[lang] || lang;
+                const flagEl = dropdownBtn.querySelector('.flag');
+                if (flagEl) flagEl.textContent = langFlags[lang] || '';
 
                 document.querySelectorAll('.lang-dropdown-menu button').forEach(function(btn) {
                     btn.classList.toggle('active-lang', btn.getAttribute('data-lang') === lang);
@@ -2415,6 +2327,11 @@
                         }
                     }
                 });
+
+                // Update lightbox zoom hint
+                lbZoomHint.textContent = lang === 'fa'
+                    ? '🔍 اسکرول برای زوم · کلیک برای تغییر'
+                    : '🔍 scroll to zoom · click to toggle';
 
                 renderProjects(lang);
                 setTimeout(initImageLoading, 100);
